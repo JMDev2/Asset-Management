@@ -1,0 +1,10 @@
+dependencyResolutionManagement {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+rootProject.name = "Asset Management"
+include ':app'
+include ':common'
+include ':etourism'
