@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ekenya.rnd.assets.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addAssetsFragment"
+            app:destination="@id/addAssetsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_assetsFragment"
+            app:destination="@id/assetsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assetsFragment"
+        android:name="com.ekenya.rnd.assets.ui.AssetsFragment"
+        android:label="fragment_assets"
+        tools:layout="@layout/fragment_assets" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ekenya.rnd.assets.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/addAssetsFragment"
+        android:name="com.ekenya.rnd.assets.ui.AddAssetsFragment"
+        android:label="fragment_add_assets"
+        tools:layout="@layout/fragment_add_assets" />
+</navigation>

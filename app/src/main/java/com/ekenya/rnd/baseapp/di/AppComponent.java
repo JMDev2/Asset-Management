@@ -3,7 +3,7 @@ package com.ekenya.rnd.baseapp.di;
 import android.app.Application;
 
 
-import com.ekenya.rnd.baseapp.TourismApp;
+import com.ekenya.rnd.baseapp.AssetApp;
 import com.ekenya.rnd.baseapp.di.injectables.FragmentModule;
 import com.ekenya.rnd.common.repo.SampleRepository;
 import com.ekenya.rnd.baseapp.di.injectables.ActivityModule;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 @Singleton
 @Component(modules = {AndroidSupportInjectionModule.class,  AppModule.class,  ViewModelModule.class,
                 ActivityModule.class, FragmentModule.class} )
-public interface AppComponent extends AndroidInjector<TourismApp> {
+public interface AppComponent extends AndroidInjector<AssetApp> {
     @NotNull
     SampleRepository sampleRepository();
 
@@ -28,7 +28,7 @@ public interface AppComponent extends AndroidInjector<TourismApp> {
     Application getApp();
 
     @Component.Builder
-    public abstract static class Builder extends AndroidInjector.Builder<TourismApp> {
+    public abstract static class Builder extends AndroidInjector.Builder<AssetApp> {
         @NotNull
         public abstract AppComponent build();
     }

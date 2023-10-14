@@ -9,7 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.ekenya.rnd.baseapp.TourismApp;
+import com.ekenya.rnd.baseapp.AssetApp;
 import com.ekenya.rnd.common.abstractions.BaseActivity;
 import com.ekenya.rnd.etourism.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
     public AndroidInjector<Fragment> supportFragmentInjector()  {
         // Fragment Injector should use the Application class
         // If necessary, I will use AndroidInjector as well as App class (I have not done this time)
-        return ((TourismApp)getApplication()).supportFragmentInjector();
+        return ((AssetApp)getApplication()).supportFragmentInjector();
     }
 
 }

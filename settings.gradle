@@ -8,3 +8,4 @@ rootProject.name = "Asset Management"
 include ':app'
 include ':common'
 include ':etourism'
+include ':assets'
