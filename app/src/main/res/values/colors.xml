@@ -11,4 +11,5 @@
     <color name="top_bg_img">#2a2a2a</color>
     <color name="city_txt">#717171</color>
     <color name="name_txt">#eeeeee</color>
+    <color name="transparent">#00000000</color>
 </resources>
