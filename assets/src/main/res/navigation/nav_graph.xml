@@ -19,6 +19,15 @@
         <action
             android:id="@+id/action_homeFragment_to_assetsFragment"
             app:destination="@id/assetsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allAssetsFragment"
+            app:destination="@id/allAssetsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_marketingAssetsFragment"
+            app:destination="@id/marketingAssetsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ITAssetsFragment"
+            app:destination="@id/ITAssetsFragment" />
     </fragment>
     <fragment
         android:id="@+id/assetsFragment"
@@ -35,4 +44,19 @@
         android:name="com.ekenya.rnd.assets.ui.AddAssetsFragment"
         android:label="fragment_add_assets"
         tools:layout="@layout/fragment_add_assets" />
+    <fragment
+        android:id="@+id/allAssetsFragment"
+        android:name="com.ekenya.rnd.assets.ui.AllAssetsFragment"
+        android:label="fragment_all_assets"
+        tools:layout="@layout/fragment_all_assets" />
+    <fragment
+        android:id="@+id/ITAssetsFragment"
+        android:name="com.ekenya.rnd.assets.ITAssetsFragment"
+        android:label="fragment_i_t_assets"
+        tools:layout="@layout/fragment_it_assets" />
+    <fragment
+        android:id="@+id/marketingAssetsFragment"
+        android:name="com.ekenya.rnd.assets.ui.MarketingAssetsFragment"
+        android:label="fragment_marketing_assets"
+        tools:layout="@layout/fragment_marketing_assets" />
 </navigation>
