@@ -6,12 +6,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ekenya.rnd.assets.ITAssetsFragment
 import com.ekenya.rnd.assets.ui.AllAssetsFragment
+import com.ekenya.rnd.assets.ui.HrAssetsFragment
 import com.ekenya.rnd.assets.ui.MarketingAssetsFragment
 
 class ViewpagerAdapter(fragmentManager : FragmentManager, lifecycle: Lifecycle)
     : FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
-        return 3
+        return 4
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -19,6 +20,7 @@ class ViewpagerAdapter(fragmentManager : FragmentManager, lifecycle: Lifecycle)
             0 -> return AllAssetsFragment()
             1 -> return ITAssetsFragment()
             2 -> return MarketingAssetsFragment()
+            3 -> return HrAssetsFragment()
             else -> return AllAssetsFragment()
         }
     }

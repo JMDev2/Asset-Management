@@ -2,10 +2,7 @@ package com.ekenya.rnd.assets.di.injectables
 
 import androidx.lifecycle.ViewModel
 import com.ekenya.rnd.assets.ITAssetsFragment
-import com.ekenya.rnd.assets.ui.AllAssetsFragment
-import com.ekenya.rnd.assets.ui.AssetViewModel
-import com.ekenya.rnd.assets.ui.HomeFragment
-import com.ekenya.rnd.assets.ui.MarketingAssetsFragment
+import com.ekenya.rnd.assets.ui.*
 import com.ekenya.rnd.baseapp.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
@@ -34,4 +31,11 @@ abstract class AssetsFragmentModule {
 
     @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
     abstract fun contributeMarketingAssetsFragment(): MarketingAssetsFragment
+
+    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
+    abstract fun contributeHrAssetsFragment(): HrAssetsFragment
+
+    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
+    abstract fun contributeAddAssetsFragment(): AddAssetsFragment
+
 }

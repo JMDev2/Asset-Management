@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.ekenya.rnd.assets.R
 import com.ekenya.rnd.assets.adapter.ViewpagerAdapter
 import com.ekenya.rnd.assets.databinding.FragmentHomeBinding
@@ -13,7 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class HomeFragment : BaseDaggerFragment() {
     private lateinit var binding : FragmentHomeBinding
 
-    var tabTitle = arrayOf("All", "IT", "Marketing")
+    var tabTitle = arrayOf("All", "IT", "Marketing", "HR")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,11 @@ class HomeFragment : BaseDaggerFragment() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
+
+
+        binding.addCard.setOnClickListener {
+            findNavController().navigate(R.id.addAssetsFragment)
+        }
     }
 
 
