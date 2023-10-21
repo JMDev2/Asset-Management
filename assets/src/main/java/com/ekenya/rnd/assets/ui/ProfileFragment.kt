@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ekenya.rnd.assets.R
-import com.ekenya.rnd.assets.databinding.FragmentHomeBinding
-import com.ekenya.rnd.assets.databinding.FragmentProfileBinding
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.example.assets.databinding.FragmentProfileBinding
 
 class ProfileFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentProfileBinding

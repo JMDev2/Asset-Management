@@ -20,7 +20,7 @@ class AssetsInjector : BaseModuleInjector {
     override fun inject(app: AssetApp) {
         DaggerAssetsComponent.builder()
             .appComponent(app.appComponent)
-           // .roomModule(RoomModule(app.applicationContext))
+            .roomModule(RoomModule(app.applicationContext))
             .build()
             .inject(this)
     }

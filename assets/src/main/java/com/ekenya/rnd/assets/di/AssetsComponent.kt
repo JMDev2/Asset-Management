@@ -2,6 +2,7 @@ package com.ekenya.rnd.assets.di
 
 import com.ekenya.rnd.assets.di.injectables.AssetsActivityModule
 import com.ekenya.rnd.assets.di.injectables.AssetsFragmentModule
+import com.ekenya.rnd.assets.di.injectables.RoomModule
 import com.ekenya.rnd.baseapp.di.AppComponent
 import com.ekenya.rnd.baseapp.di.ModuleScope
 import com.ekenya.rnd.baseapp.di.injectables.ViewModelModule
@@ -16,7 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule
         AssetsFragmentModule::class,
         AndroidSupportInjectionModule::class,
         ViewModelModule::class,
-       // RoomModule::class
+        RoomModule::class
 
     ]
 )

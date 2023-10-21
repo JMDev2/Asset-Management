@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.ekenya.rnd.assets", appContext.packageName)
+        assertEquals("com.ekenya.rnd.Assets", appContext.packageName)
     }
 }

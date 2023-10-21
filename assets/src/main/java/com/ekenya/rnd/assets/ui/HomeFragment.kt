@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.ekenya.rnd.assets.R
 import com.ekenya.rnd.assets.adapter.ViewpagerAdapter
-import com.ekenya.rnd.assets.databinding.FragmentHomeBinding
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.example.assets.R
+import com.example.assets.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : BaseDaggerFragment() {

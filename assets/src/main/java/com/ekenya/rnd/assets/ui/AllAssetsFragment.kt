@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ekenya.rnd.assets.databinding.FragmentAllAssetsBinding
-import com.ekenya.rnd.assets.databinding.FragmentMarketingAssetsBinding
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.example.assets.databinding.FragmentAllAssetsBinding
 
 
 class AllAssetsFragment : BaseDaggerFragment() {
