@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.example.assets.R
 import com.example.assets.databinding.FragmentAddAssetsBinding
 import javax.inject.Inject
 
@@ -51,7 +53,7 @@ class AddAssetsFragment : BaseDaggerFragment() {
                 if (assets != null){
                     viewModel.saveAsset(assets)
                     Log.d("Maina", "Database operation performed (Save): $assets")
-
+                    findNavController().navigate(R.id.homeFragment)
                 }
             }
         }
