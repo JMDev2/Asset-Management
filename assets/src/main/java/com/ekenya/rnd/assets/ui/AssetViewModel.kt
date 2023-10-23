@@ -4,10 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ekenya.rnd.assets.database.AssetsRepository
 import com.ekenya.rnd.baseapp.model.Assets
+import com.ekenya.rnd.common.utils.Resource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AssetViewModel @Inject constructor(private val repository: AssetsRepository) : ViewModel() {
+
+    val allAssets: Flow<Resource<List<Assets>>> = repository.allAssets.map {
+        Resource.success(it)
+    }
 
     //saving assets
     fun saveAsset(assets: Assets){
