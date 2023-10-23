@@ -169,6 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -189,6 +190,15 @@
                 android:paddingStart="16dp"
                 android:layout_marginEnd="16dp"/>
         </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/asset_img_display"
+            android:layout_width="20dp"
+            android:scaleType="fitXY"
+            android:layout_marginStart="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/mac" />
     </LinearLayout>
 
 

@@ -70,6 +70,8 @@ class AddAssetsFragment : BaseDaggerFragment() {
             if (data != null) {
                 val imageUri = data.data
 
+                binding.assetImgDisplay.setImageURI(imageUri)
+
 
                 // Get the image file name
                 val imageFileName = imageUri?.let { getFileName(it) }
@@ -96,9 +98,6 @@ class AddAssetsFragment : BaseDaggerFragment() {
     }
 
 
-
-
-
     private fun saveAssets(){
         binding.button.setOnClickListener {
             val validationResult = validateInput()
@@ -122,6 +121,7 @@ class AddAssetsFragment : BaseDaggerFragment() {
         val model = binding.assetModel.editText?.text.toString()
         val other_att = binding.assetOtherAttr.editText?.text.toString()
         val description = binding.description.text.toString()
+
 
 
         if (name.isEmpty()){

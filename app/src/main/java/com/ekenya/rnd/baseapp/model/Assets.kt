@@ -18,6 +18,7 @@ data class Assets(
     val other_attributes: String?,
     val description: String?
 
+
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readValue(Int::class.java.classLoader) as? Int,
