@@ -1,6 +1,11 @@
 package com.ekenya.rnd.assets.ui
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +23,7 @@ class AddAssetsFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentAddAssetsBinding
 
 
+    private val PICK_IMAGE_REQUEST = 1
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel by lazy {
@@ -42,7 +48,56 @@ class AddAssetsFragment : BaseDaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         saveAssets()
+        pickImage(view)
+
     }
+
+
+    private fun pickImage(view: View){
+        binding.imageLayout.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        }
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                val imageUri = data.data
+
+
+                // Get the image file name
+                val imageFileName = imageUri?.let { getFileName(it) }
+                binding.chooseImgTxt.text = imageFileName
+
+            }
+        }
+    }
+
+    @SuppressLint("Range")
+    private fun getFileName(uri: Uri): String? {
+        val contentResolver = requireContext().contentResolver
+        val cursor = contentResolver.query(uri, null, null, null, null)
+        return try {
+            if (cursor != null && cursor.moveToFirst()) {
+                val displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                displayName
+            } else {
+                null
+            }
+        } finally {
+            cursor?.close()
+        }
+    }
+
+
+
+
 
     private fun saveAssets(){
         binding.button.setOnClickListener {

@@ -60,6 +60,7 @@ class AllAssetsFragment : BaseDaggerFragment() {
             viewModel.allAssets.collect(){ result ->
                when (result.status){
                    Status.SUCCESS -> {
+                       binding.progressBar.visibility = View.GONE
                        val assets = result.data
                        assets?.let {
                            if (allAssetsAdapter == null){
@@ -69,9 +70,11 @@ class AllAssetsFragment : BaseDaggerFragment() {
                        }
                    }
                    Status.LOADING -> {
+                       binding.progressBar.visibility = View.VISIBLE
 
                    }
                    Status.ERROR -> {
+                       binding.progressBar.visibility = View.GONE
 
                    }
                }
