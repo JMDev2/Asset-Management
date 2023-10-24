@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ekenya.rnd.baseapp.model.Assets
 
-@Database(entities = [Assets::class], version = 1, exportSchema = false)
+@Database(entities = [Assets::class], version = 2, exportSchema = false)
 abstract class AssetsDatabase : RoomDatabase() {
 
     abstract fun assetsDao(): AssetsDao

@@ -16,52 +16,47 @@ import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
 import com.example.assets.R
 import com.example.assets.databinding.FragmentAddAssetsBinding
+import java.io.IOException
 import javax.inject.Inject
 
 
 class AddAssetsFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentAddAssetsBinding
-
-
     private val PICK_IMAGE_REQUEST = 1
+    private var selectedImageByteArray: ByteArray? = null  // New field
+
     @Inject
     lateinit var factory: ViewModelProvider.Factory
+
     private val viewModel by lazy {
         ViewModelProvider(this, factory)[AssetViewModel::class.java]
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentAddAssetsBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         saveAssets()
         pickImage(view)
-
     }
 
-
-    private fun pickImage(view: View){
+    private fun pickImage(view: View) {
         binding.imageLayout.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, PICK_IMAGE_REQUEST)
         }
-
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -72,10 +67,13 @@ class AddAssetsFragment : BaseDaggerFragment() {
 
                 binding.assetImgDisplay.setImageURI(imageUri)
 
+                // Convert the selected image to a ByteArray
+                selectedImageByteArray = imageUri?.let { convertImageToByteArray(it) }
 
                 // Get the image file name
                 val imageFileName = imageUri?.let { getFileName(it) }
                 binding.chooseImgTxt.text = imageFileName
+
 
             }
         }
@@ -98,13 +96,29 @@ class AddAssetsFragment : BaseDaggerFragment() {
     }
 
 
-    private fun saveAssets(){
+    // Helper function to convert an image to a ByteArray
+    private fun convertImageToByteArray(uri: Uri): ByteArray? {
+        try {
+            val inputStream = requireContext().contentResolver.openInputStream(uri)
+            return inputStream?.readBytes()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    // Modify the saveAssets method
+    private fun saveAssets() {
         binding.button.setOnClickListener {
             val validationResult = validateInput()
 
-            if (validationResult.isValid){
+            if (validationResult.isValid) {
                 val assets = validationResult.assets
-                if (assets != null){
+
+                // Set the image data to the assets object
+                assets?.image = selectedImageByteArray
+
+                if (assets != null) {
                     viewModel.saveAsset(assets)
                     Log.d("Maina", "Database operation performed (Save): $assets")
                     findNavController().navigate(R.id.homeFragment)
@@ -113,28 +127,24 @@ class AddAssetsFragment : BaseDaggerFragment() {
         }
     }
 
-    private fun validateInput(): ValidateResult{
+    // Helper function to validate user input
+    private fun validateInput(): ValidateResult {
         val name = binding.assetName.editText?.text.toString()
         val serialNumber = binding.assetSn.editText?.text.toString()
-        val departemnt = binding.assetDep.editText?.text.toString()
+        val department = binding.assetDep.editText?.text.toString()
         val city = binding.assetCity.editText?.text.toString()
         val model = binding.assetModel.editText?.text.toString()
-        val other_att = binding.assetOtherAttr.editText?.text.toString()
+        val otherAttributes = binding.assetOtherAttr.editText?.text.toString()
         val description = binding.description.text.toString()
 
-
-
-        if (name.isEmpty()){
+        if (name.isEmpty()) {
             binding.assetName.error = "Field must not be empty"
+            return ValidateResult(false, null)
         }
 
-        Log.e("maina","name: $name")
-
-        return ValidateResult(true, Assets(name = name, serial_number = serialNumber, department = departemnt, city = city, model = model, other_attributes = other_att, description = description))
-
+        return ValidateResult(true, Assets(name = name, serial_number = serialNumber, department = department, city = city, model = model, other_attributes = otherAttributes, description = description, image = selectedImageByteArray))
     }
 
+    // Data class to hold validation result
     private data class ValidateResult(val isValid: Boolean, val assets: Assets? = null)
-
-
 }

@@ -16,8 +16,8 @@ data class Assets(
     val city: String?,
     val model: String?,
     val other_attributes: String?,
-    val description: String?
-
+    val description: String?,
+    var image: ByteArray?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -28,7 +28,8 @@ data class Assets(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.createByteArray()
     ) {
     }
 
@@ -41,6 +42,7 @@ data class Assets(
         parcel.writeString(model)
         parcel.writeString(other_attributes)
         parcel.writeString(description)
+        parcel.writeByteArray(image)
     }
 
     override fun describeContents(): Int {

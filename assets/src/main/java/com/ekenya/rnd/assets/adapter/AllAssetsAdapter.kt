@@ -1,6 +1,7 @@
 package com.ekenya.rnd.assets.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,11 @@ class AllAssetsAdapter(var assets: List<Assets>):
                 binding.assetName.text = assets.name
                 binding.assetSn.text = assets.serial_number
                 binding.assetDep.text = assets.department
+
+                if (assets.image != null) {
+                    val bitmap = BitmapFactory.decodeByteArray(assets.image, 0, assets.image!!.size)
+                    binding.assetImg.setImageBitmap(bitmap)
+                }
             }
         }
 
@@ -22,6 +28,7 @@ class AllAssetsAdapter(var assets: List<Assets>):
             ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false), parent.context
         )
     }
+
 
     override fun onBindViewHolder(holder: AssetsViewHolder, position: Int) {
         holder.bind(assets[position])
