@@ -1,5 +1,7 @@
 package com.ekenya.rnd.assets.ui
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ekenya.rnd.assets.database.AssetsRepository
@@ -12,6 +14,10 @@ import javax.inject.Inject
 
 class AssetViewModel @Inject constructor(private val repository: AssetsRepository) : ViewModel() {
 
+
+    private val _filteredAssets = MutableLiveData<List<Assets>>()
+    val filteredAssets: LiveData<List<Assets>> get() = _filteredAssets
+
     val allAssets: Flow<Resource<List<Assets>>> = repository.allAssets.map {
         Resource.success(it)
     }
@@ -22,4 +28,13 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
             repository.addAsset(assets)
         }
     }
+
+
+    //checking if the serial number exists
+    suspend fun isSerialNumberUnique(serialNumber: String): Boolean {
+        return repository.isSerialNumberUnique(serialNumber)
+    }
+
+
+
 }

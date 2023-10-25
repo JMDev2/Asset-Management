@@ -54,7 +54,11 @@
         android:id="@+id/allAssetsFragment"
         android:name="com.ekenya.rnd.assets.ui.AllAssetsFragment"
         android:label="fragment_all_assets"
-        tools:layout="@layout/fragment_all_assets" />
+        tools:layout="@layout/fragment_all_assets" >
+        <action
+            android:id="@+id/action_allAssetsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ITAssetsFragment"
         android:name="com.ekenya.rnd.assets.ITAssetsFragment"

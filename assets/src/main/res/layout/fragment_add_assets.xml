@@ -177,16 +177,20 @@
             android:textColor="@color/name_txt"/>
         
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             app:cardBackgroundColor="@color/name_txt">
 
             <TextView
                 android:id="@+id/choose_img_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
                 android:text="Choose an Image"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center"
+                android:textSize="10sp"
                 android:paddingStart="16dp"
                 android:layout_marginEnd="16dp"/>
         </androidx.cardview.widget.CardView>

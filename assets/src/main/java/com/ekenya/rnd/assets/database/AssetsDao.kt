@@ -14,4 +14,8 @@ interface AssetsDao {
     @Query("SELECT * FROM assets")
     fun getAllAssets():
             Flow<List<Assets>>
+
+    @Query("SELECT * FROM assets WHERE serial_number = :serialNumber")
+    suspend fun getAssetBySerialNumber(serialNumber: String): Assets?
+
 }

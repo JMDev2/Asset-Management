@@ -10,12 +10,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.ekenya.rnd.assets.database.AssetsDatabase
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.ekenya.rnd.common.utils.toast
 import com.example.assets.R
 import com.example.assets.databinding.FragmentAddAssetsBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
 
@@ -79,6 +85,7 @@ class AddAssetsFragment : BaseDaggerFragment() {
         }
     }
 
+    //Help[er function to pick the image name
     @SuppressLint("Range")
     private fun getFileName(uri: Uri): String? {
         val contentResolver = requireContext().contentResolver
@@ -119,13 +126,21 @@ class AddAssetsFragment : BaseDaggerFragment() {
                 assets?.image = selectedImageByteArray
 
                 if (assets != null) {
-                    viewModel.saveAsset(assets)
-                    Log.d("Maina", "Database operation performed (Save): $assets")
-                    findNavController().navigate(R.id.homeFragment)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (viewModel.isSerialNumberUnique(assets.serial_number.toString())) {
+                            viewModel.saveAsset(assets)
+                            Log.d("Maina", "Database operation performed (Save): $assets")
+                            findNavController().navigate(R.id.homeFragment)
+                        } else {
+                            // Display a toast message when the serial number is not unique
+                            toast("Serial number already exists")
+                        }
+                    }
                 }
             }
         }
     }
+
 
     // Helper function to validate user input
     private fun validateInput(): ValidateResult {
