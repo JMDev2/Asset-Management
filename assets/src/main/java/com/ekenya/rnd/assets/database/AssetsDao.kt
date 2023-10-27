@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.ekenya.rnd.baseapp.model.Assets
+import com.ekenya.rnd.common.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -17,5 +18,9 @@ interface AssetsDao {
 
     @Query("SELECT * FROM assets WHERE serial_number = :serialNumber")
     suspend fun getAssetBySerialNumber(serialNumber: String): Assets?
+
+    //query assets by department
+    @Query("SELECT * FROM assets WHERE department = :department")
+    fun getAssetsByDepartment(department: String): Flow<List<Assets>>
 
 }

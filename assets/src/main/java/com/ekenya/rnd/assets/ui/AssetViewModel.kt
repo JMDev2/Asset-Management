@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 class AssetViewModel @Inject constructor(private val repository: AssetsRepository) : ViewModel() {
 
-
     private val _filteredAssets = MutableLiveData<List<Assets>>()
     val filteredAssets: LiveData<List<Assets>> get() = _filteredAssets
 
@@ -22,19 +21,54 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
         Resource.success(it)
     }
 
+
     //saving assets
-    fun saveAsset(assets: Assets){
+    fun saveAsset(assets: Assets) {
         viewModelScope.launch {
             repository.addAsset(assets)
         }
     }
-
 
     //checking if the serial number exists
     suspend fun isSerialNumberUnique(serialNumber: String): Boolean {
         return repository.isSerialNumberUnique(serialNumber)
     }
 
+    //get IT assets
+    suspend fun getITAssets(): Flow<Resource<List<Assets>>> {
+        return repository.getAssetsByDepartment("IT")
+            .map { assets ->
+                if (assets.isEmpty()) {
+                    Resource.error("No IT assets found", assets)
+                } else {
+                    Resource.success(assets)
+                }
+            }
+    }
+
+    //get marketing department assets
+    suspend fun getMarketingAssests(): Flow<Resource<List<Assets>>> {
+        return repository.getAssetsByDepartment("Marketing")
+            .map { assets ->
+                if (assets.isEmpty()) {
+                    Resource.error("No Marketing assets found", assets)
+                } else {
+                    Resource.success(assets)
+                }
+            }
+    }
+
+    //get hr assets
+    suspend fun getHrAssets(): Flow<Resource<List<Assets>>>{
+        return repository.getAssetsByDepartment("Hr")
+            .map { assets ->
+                if (assets.isEmpty()){
+                    Resource.error("No Hr assets found", assets)
+                }else{
+                   Resource.success(assets)
+                }
+            }
+    }
 
 
 }

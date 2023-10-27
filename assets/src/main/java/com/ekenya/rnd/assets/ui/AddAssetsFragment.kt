@@ -141,7 +141,6 @@ class AddAssetsFragment : BaseDaggerFragment() {
         }
     }
 
-
     // Helper function to validate user input
     private fun validateInput(): ValidateResult {
         val name = binding.assetName.editText?.text.toString()

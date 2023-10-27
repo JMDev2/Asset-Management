@@ -1,6 +1,7 @@
 package com.ekenya.rnd.assets.database
 
 import com.ekenya.rnd.baseapp.model.Assets
+import com.ekenya.rnd.common.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -26,5 +27,10 @@ class AssetsRepository @Inject constructor(private val assetsDao: AssetsDao) {
             val existingAsset = assetsDao.getAssetBySerialNumber(serialNumber)
             existingAsset == null
         }
+    }
+
+    //get assets by department
+    suspend fun getAssetsByDepartment(department: String): Flow<List<Assets>>{
+        return assetsDao.getAssetsByDepartment(department)
     }
 }

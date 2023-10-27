@@ -58,9 +58,9 @@ class HomeFragment : BaseDaggerFragment() {
         binding.moreAssetsCard.setOnClickListener {
             findNavController().navigate(R.id.allAssetsFragment)
         }
-
-
-
+        binding.profileCard.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
 
         //search
        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
