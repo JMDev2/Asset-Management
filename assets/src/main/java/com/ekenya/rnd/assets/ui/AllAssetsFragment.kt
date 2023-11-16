@@ -52,17 +52,6 @@ class AllAssetsFragment : BaseDaggerFragment() {
 
         observEAssets()
 
-
-
-
-        //search
-//        viewModel.filteredShips.observe(viewLifecycleOwner) { filteredShips ->
-//            // Update your RecyclerView with filteredShips
-//            //allAssetsAdapter.submitList(filteredShips)
-//            allAssetsAdapter = AllAssetsAdapter(filteredAssets)
-//            binding.recyclerview.adapter = allAssetsAdapter
-//            allAssetsAdapter!!.notifyDataSetChanged()
-//        }
     }
 
 
@@ -92,11 +81,10 @@ class AllAssetsFragment : BaseDaggerFragment() {
                    }
                    Status.LOADING -> {
                        binding.progressBar.visibility = View.VISIBLE
-
                    }
                    Status.ERROR -> {
                        binding.progressBar.visibility = View.GONE
-
+                       binding.errorText.visibility = View.VISIBLE
                    }
                }
             }
