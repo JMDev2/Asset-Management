@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.baseapp.model.Profile
 
-@Database(entities = [Profile::class], version = 1, exportSchema = false)
+@Database(entities = [Profile::class], version = 2, exportSchema = false)
 abstract class ProfileDatabase : RoomDatabase() {
 
     abstract fun profileDao(): ProfileDao

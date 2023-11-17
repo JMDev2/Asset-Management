@@ -20,8 +20,8 @@ abstract class AssetsFragmentModule {
         abstract fun bindAssetViewModel(viewModel: AssetViewModel) : ViewModel
     }
 
-    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
-    abstract fun contributeHomeFragment(): HomeFragment
+//    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
+//    abstract fun contributeHomeFragment(): HomeFragment
 
     @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
     abstract fun contributeAllAssetsFragment(): AllAssetsFragment
@@ -49,5 +49,8 @@ abstract class AssetsFragmentModule {
 
     @ContributesAndroidInjector(modules = [ProfileFragmentModule::class])
     abstract fun contributeProfileFragment(): ProfileFragment
+//
+    @ContributesAndroidInjector(modules = [ProfileFragmentModule::class])
+    abstract fun contributeProfileHomeFragment(): HomeFragment
 
 }

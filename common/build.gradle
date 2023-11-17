@@ -80,6 +80,7 @@ dependencies {
 
     //Kotlin extensions (Coroutines + Flow)
     api "androidx.room:room-ktx:2.5.2"
+    api 'com.squareup.picasso:picasso:2.8'
 
 
 }

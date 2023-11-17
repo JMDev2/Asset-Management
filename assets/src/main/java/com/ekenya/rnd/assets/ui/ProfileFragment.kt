@@ -1,5 +1,8 @@
 package com.ekenya.rnd.assets.ui
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,10 +18,14 @@ import com.example.assets.databinding.FragmentProfileBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.IOException
 import javax.inject.Inject
 
 class ProfileFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentProfileBinding
+
+    private val PICK_IMAGE_REQUEST = 1
+    private var selectedImageByteArray: ByteArray? = null  // New field
 
 
     @Inject
@@ -49,11 +56,49 @@ class ProfileFragment : BaseDaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         saveUser()
+        pickImage(view)
 
 
 
     }
 
+    private fun pickImage(view: View) {
+        binding.imageCard.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                val imageUri = data.data
+
+                binding.imageView.setImageURI(imageUri)
+
+                // Convert the selected image to a ByteArray
+                selectedImageByteArray = imageUri?.let { convertImageToByteArray(it) }
+
+
+
+            }
+        }
+    }
+
+
+    // Helper function to convert an image to a ByteArray
+    private fun convertImageToByteArray(uri: Uri): ByteArray? {
+        try {
+            val inputStream = requireContext().contentResolver.openInputStream(uri)
+            return inputStream?.readBytes()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
+    }
 
     private fun saveUser() {
         binding.btn.setOnClickListener {
@@ -61,6 +106,9 @@ class ProfileFragment : BaseDaggerFragment() {
 
             if (validationResult.isValid) {
                 val profile = validationResult.profile
+
+                // Set the image data to the assets object
+                profile?.image = selectedImageByteArray
 
                 if (profile != null) {
                     CoroutineScope(Dispatchers.Main).launch {
@@ -113,7 +161,7 @@ class ProfileFragment : BaseDaggerFragment() {
             return ValidateResult(false, null)
         }
 
-        return ValidateResult(true, Profile(name = name, country = country, city = city, email = email))
+        return ValidateResult(true, Profile(name = name, country = country, city = city, email = email,image = selectedImageByteArray))
     }
 
     // Data class to hold validation result

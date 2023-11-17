@@ -32,6 +32,7 @@ class AllAssetsFragment : BaseDaggerFragment() {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,6 +63,8 @@ class AllAssetsFragment : BaseDaggerFragment() {
             adapter = allAssetsAdapter
         }
     }
+
+
 
 
 

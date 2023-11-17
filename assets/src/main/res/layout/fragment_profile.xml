@@ -7,7 +7,7 @@
     tools:context=".ui.ProfileFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card"
+        android:id="@+id/image_card"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="15dp"
@@ -24,6 +24,7 @@
             app:cardCornerRadius="250dp">
 
             <ImageView
+                android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
