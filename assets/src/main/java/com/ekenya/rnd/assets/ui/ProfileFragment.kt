@@ -1,6 +1,7 @@
 package com.ekenya.rnd.assets.ui
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
 import com.ekenya.rnd.common.utils.toast
 import com.example.assets.R
 import com.example.assets.databinding.FragmentProfileBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class ProfileFragment : BaseDaggerFragment() {
 
     private val PICK_IMAGE_REQUEST = 1
     private var selectedImageByteArray: ByteArray? = null  // New field
+
 
 
     @Inject
@@ -87,6 +90,7 @@ class ProfileFragment : BaseDaggerFragment() {
             }
         }
     }
+
 
 
     // Helper function to convert an image to a ByteArray

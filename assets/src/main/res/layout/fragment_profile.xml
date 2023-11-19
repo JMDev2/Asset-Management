@@ -46,7 +46,7 @@
         android:fontFamily="@font/inter"
         android:hint="Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card">
+        app:layout_constraintTop_toBottomOf="@+id/image_card">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

@@ -68,7 +68,9 @@ class HomeFragment : BaseDaggerFragment() {
             findNavController().navigate(R.id.allAssetsFragment)
         }
         binding.profileCard.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
+            val bottomSheetFragment = ProfileBottomSheetFragment()
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+
         }
 
         //search
