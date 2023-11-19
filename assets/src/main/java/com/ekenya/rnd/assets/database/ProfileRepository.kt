@@ -25,4 +25,9 @@ class ProfileRepository @Inject constructor(private val profileDao: ProfileDao) 
     suspend fun getUserByEmail(profileEmail: String): Profile? {
         return profileDao.getProfileByEmail(profileEmail)
     }
+
+    //update
+    suspend fun updateProfileDetails(name: String, country: String, city: String,image: ByteArray, email: String) {
+        profileDao.updateProfile(name, country, city,image, email)
+    }
 }

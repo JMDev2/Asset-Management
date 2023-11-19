@@ -129,8 +129,16 @@ class ProfileFragment : BaseDaggerFragment() {
                             binding.btn.visibility = View.GONE
                             binding.update.visibility = View.VISIBLE
                             binding.update.setOnClickListener {
-                                //viewModel.updateProfile()
-                                toast("Profile updated")
+                                profile?.image = selectedImageByteArray
+                                val name = binding.name.editText?.text.toString()
+                                val city = binding.city.editText?.text.toString()
+                                val country = binding.country.editText?.text.toString()
+                                val email = binding.email.editText?.text.toString()
+
+                                CoroutineScope(Dispatchers.Main).launch {
+                                    selectedImageByteArray?.let { it1 -> viewModel.updateProfileDetails(name, country, city,image = it1, email) }
+                                    toast("Profile updated")
+                                }
                             }
                         }
                     }

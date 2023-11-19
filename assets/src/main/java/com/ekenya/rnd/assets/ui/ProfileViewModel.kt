@@ -34,4 +34,9 @@ class ProfileViewModel @Inject constructor(private val repository: ProfileReposi
         return repository.getUserByEmail(email) != null
     }
 
+    //update
+    suspend fun updateProfileDetails(name: String, country: String, city: String,image: ByteArray, email: String) {
+        repository.updateProfileDetails(name, country, city,image, email)
+    }
+
 }
