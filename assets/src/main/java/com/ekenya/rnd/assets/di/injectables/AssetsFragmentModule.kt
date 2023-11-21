@@ -27,6 +27,9 @@ abstract class AssetsFragmentModule {
     abstract fun contributeAllAssetsFragment(): AllAssetsFragment
 
     @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
+    abstract fun contributeAllCategoriesFragment(): AllCategoriesFragment
+
+    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
     abstract fun contributeITAssetsFragment(): ITAssetsFragment
 
     @ContributesAndroidInjector(modules = [HomeFragmentModule::class])

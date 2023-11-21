@@ -51,7 +51,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter" />
+            android:fontFamily="@font/poppins"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +73,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter" />
+            android:fontFamily="@font/poppins"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +93,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter" />
+            android:fontFamily="@font/poppins"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +112,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter" />
+            android:fontFamily="@font/poppins" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,6 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Submit"
+        android:fontFamily="@font/poppins"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="@+id/email"
         app:layout_constraintStart_toStartOf="@+id/email"
@@ -132,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Update"
+        android:fontFamily="@font/poppins"
         android:visibility="invisible"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="@+id/email"

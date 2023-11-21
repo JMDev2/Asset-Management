@@ -65,7 +65,7 @@ class HomeFragment : BaseDaggerFragment() {
             findNavController().navigate(R.id.addAssetsFragment)
         }
         binding.moreAssetsCard.setOnClickListener {
-            findNavController().navigate(R.id.allAssetsFragment)
+            findNavController().navigate(R.id.allCategoriesFragment)
         }
         binding.profileCard.setOnClickListener {
             val bottomSheetFragment = ProfileBottomSheetFragment()
@@ -74,19 +74,19 @@ class HomeFragment : BaseDaggerFragment() {
         }
 
         //search
-       binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val filteredShips = shipList.filter {
-                    it.serial_number?.contains(newText.orEmpty(), ignoreCase = true) == true
-                }
-               // viewModel.filteredShips.postValue(filteredShips)
-                return true
-            }
-        })
+//       binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                val filteredShips = shipList.filter {
+//                    it.serial_number?.contains(newText.orEmpty(), ignoreCase = true) == true
+//                }
+//               // viewModel.filteredShips.postValue(filteredShips)
+//                return true
+//            }
+//        })
     }
 
     @SuppressLint("SetTextI18n")

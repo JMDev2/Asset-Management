@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,6 @@ class AllAssetsFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentAllAssetsBinding
     private var allAssetsAdapter: AllAssetsAdapter? = null
 
-    var filteredAssets: List<Assets> = ArrayList()
 
 
     @Inject
@@ -53,6 +53,8 @@ class AllAssetsFragment : BaseDaggerFragment() {
 
         observEAssets()
 
+
+
     }
 
 
@@ -63,8 +65,6 @@ class AllAssetsFragment : BaseDaggerFragment() {
             adapter = allAssetsAdapter
         }
     }
-
-
 
 
 

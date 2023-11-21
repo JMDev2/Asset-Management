@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_addAssetsFragment2"
             app:destination="@id/addAssetsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allCategoriesFragment"
+            app:destination="@id/allCategoriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/assetsFragment"
@@ -95,6 +98,15 @@
         tools:layout="@layout/fragment_hr_assets" >
         <action
             android:id="@+id/action_hrAssetsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allCategoriesFragment"
+        android:name="com.ekenya.rnd.assets.ui.AllCategoriesFragment"
+        android:label="fragment_all_categories"
+        tools:layout="@layout/fragment_all_categories" >
+        <action
+            android:id="@+id/action_allCategoriesFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

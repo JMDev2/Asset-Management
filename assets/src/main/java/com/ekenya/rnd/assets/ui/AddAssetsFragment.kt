@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.ekenya.rnd.assets.database.AssetsDatabase
 import com.ekenya.rnd.baseapp.model.Assets
@@ -47,6 +49,14 @@ class AddAssetsFragment : BaseDaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddAssetsBinding.inflate(inflater, container, false)
+
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        // Enable the back arrow in the toolbar
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Set the click listener for the back arrow
+        binding.toolbar.setNavigationOnClickListener {
+            NavHostFragment.findNavController(this).popBackStack()
+        }
         return binding.root
     }
 
