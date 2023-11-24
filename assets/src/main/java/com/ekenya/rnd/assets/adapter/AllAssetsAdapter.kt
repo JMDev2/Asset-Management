@@ -39,4 +39,9 @@ class AllAssetsAdapter(var assets: List<Assets>):
     }
 
     override fun getItemCount(): Int = assets.size
+
+    fun updateData(newData: List<Assets>) {
+        assets = newData
+        notifyDataSetChanged()
+    }
 }

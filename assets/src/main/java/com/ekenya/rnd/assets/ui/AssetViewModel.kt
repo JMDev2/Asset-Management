@@ -20,6 +20,9 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
     val allAssets: Flow<Resource<List<Assets>>> = repository.allAssets.map {
         Resource.success(it)
     }
+    fun refresh(){
+        allAssets
+    }
 
 
     //saving assets

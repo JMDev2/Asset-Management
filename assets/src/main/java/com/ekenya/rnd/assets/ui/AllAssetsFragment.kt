@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ekenya.rnd.assets.adapter.AllAssetsAdapter
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class AllAssetsFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentAllAssetsBinding
     private var allAssetsAdapter: AllAssetsAdapter? = null
+
 
 
 
@@ -44,6 +46,8 @@ class AllAssetsFragment : BaseDaggerFragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAllAssetsBinding.inflate(inflater, container, false)
+
+
         return binding.root
 
     }
@@ -51,8 +55,8 @@ class AllAssetsFragment : BaseDaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observEAssets()
-
+        observeAssets()
+        setRecyclerView()
 
 
     }
@@ -68,7 +72,7 @@ class AllAssetsFragment : BaseDaggerFragment() {
 
 
 
-    private fun observEAssets(){
+    private fun observeAssets(){
         lifecycleScope.launch{
             viewModel.allAssets.collect(){ result ->
                when (result.status){
@@ -79,6 +83,8 @@ class AllAssetsFragment : BaseDaggerFragment() {
                            if (allAssetsAdapter == null){
                                allAssetsAdapter = AllAssetsAdapter(it)
                                setRecyclerView()
+                           }else{
+                               allAssetsAdapter?.updateData(it)
                            }
                        }
                    }
@@ -86,13 +92,15 @@ class AllAssetsFragment : BaseDaggerFragment() {
                        binding.progressBar.visibility = View.VISIBLE
                    }
                    Status.ERROR -> {
-                       binding.progressBar.visibility = View.GONE
+                       binding.progressBar.visibility = View.VISIBLE
                        binding.errorText.visibility = View.VISIBLE
                    }
                }
             }
         }
     }
+
+
 
 
 }

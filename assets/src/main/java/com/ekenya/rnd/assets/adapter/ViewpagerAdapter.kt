@@ -12,7 +12,7 @@ import com.ekenya.rnd.assets.ui.MarketingAssetsFragment
 class ViewpagerAdapter(fragmentManager : FragmentManager, lifecycle: Lifecycle)
     : FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
-        return 4
+        return 5
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -21,6 +21,7 @@ class ViewpagerAdapter(fragmentManager : FragmentManager, lifecycle: Lifecycle)
             1 -> return ITAssetsFragment()
             2 -> return MarketingAssetsFragment()
             3 -> return HrAssetsFragment()
+            4 -> return ITAssetsFragment()
             else -> return AllAssetsFragment()
         }
     }

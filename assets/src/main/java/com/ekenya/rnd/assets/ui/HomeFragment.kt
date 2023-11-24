@@ -34,7 +34,7 @@ class HomeFragment : BaseDaggerFragment() {
         ViewModelProvider(this, factory)[ProfileViewModel::class.java]
     }
 
-    var tabTitle = arrayOf("All", "IT", "Marketing", "HR")
+    var tabTitle = arrayOf("All", "IT", "Marketing", "HR", "Sales")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,20 +73,7 @@ class HomeFragment : BaseDaggerFragment() {
 
         }
 
-        //search
-//       binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                val filteredShips = shipList.filter {
-//                    it.serial_number?.contains(newText.orEmpty(), ignoreCase = true) == true
-//                }
-//               // viewModel.filteredShips.postValue(filteredShips)
-//                return true
-//            }
-//        })
+
     }
 
     @SuppressLint("SetTextI18n")
