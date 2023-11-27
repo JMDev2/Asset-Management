@@ -41,8 +41,8 @@ abstract class AssetsFragmentModule {
     @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
     abstract fun contributeAddAssetsFragment(): AddAssetsFragment
 
-    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
-    abstract fun contributeAssetDetailsFragment(): AssestDetailsFragment
+
+
 
 
     @Module
@@ -58,5 +58,8 @@ abstract class AssetsFragmentModule {
 //
     @ContributesAndroidInjector(modules = [ProfileFragmentModule::class])
     abstract fun contributeProfileHomeFragment(): HomeFragment
+
+    @ContributesAndroidInjector(modules = [ProfileFragmentModule::class])
+    abstract fun contributeAssetDetailsFragment(): AssestDetailsFragment
 
 }

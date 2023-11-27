@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/top_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.ekenya.rnd.assets.ui.AssestDetailsFragment">
 
@@ -14,14 +15,15 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
+                android:background="@color/top_bg_img"
                 app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap"
-                app:contentScrim="@color/top_bg_img">
+                app:contentScrim="@color/top_bg">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    app:cardBackgroundColor="@color/top_bg_img"
+                    app:cardBackgroundColor="@color/top_bg"
                     app:cardCornerRadius="100dp"
                     android:layout_gravity="center"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,16 +78,16 @@
                     android:layout_marginTop="15dp"
                     android:textColor="@color/name_txt"
                     android:fontFamily="@font/poppins"
-                    android:text="Joseph"/>
+                    android:text="Name"/>
 
                 <TextView
-                    android:id="@+id/user_email"
+                    android:id="@+id/user_country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins"
                     android:textColor="@color/city_txt"
-                    android:text="Joseph"/>
+                    android:text="Country"/>
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
@@ -111,7 +113,7 @@
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
-                            app:cardBackgroundColor="@color/top_bg_img"
+                            app:cardBackgroundColor="@color/top_bg"
                             app:cardCornerRadius="250dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -140,7 +142,7 @@
                             android:id="@+id/more_assets_card"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            app:cardBackgroundColor="@color/top_bg_img"
+                            app:cardBackgroundColor="@color/top_bg"
                             app:cardCornerRadius="250dp"
                             app:layout_constraintEnd_toStartOf="@id/profile_card"
                             app:layout_constraintStart_toEndOf="@id/add_card"
@@ -172,7 +174,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginEnd="10dp"
-                            app:cardBackgroundColor="@color/top_bg_img"
+                            app:cardBackgroundColor="@color/top_bg"
                             app:cardCornerRadius="250dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -219,7 +221,7 @@
                     android:textColor="@color/name_txt"
                     android:fontFamily="@font/poppins"
                     android:layout_marginStart="24dp"
-                    android:text="Joseph"/>
+                    android:text="Never Quit"/>
 
                 <TextView
                     android:id="@+id/date"
@@ -229,7 +231,7 @@
                     android:textColor="@color/city_txt"
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Joseph"/>
+                    android:text="27 Novermber 2023"/>
 
             </LinearLayout>
 
@@ -241,26 +243,76 @@
                 android:background="@color/top_bg_img">
 
                 <TextView
-                    android:id="@+id/user_country"
+                    android:id="@+id/asset_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/name_txt"
                     android:fontFamily="@font/poppins"
                     android:layout_marginStart="24dp"
-                    android:text="Kenya"/>
+                    android:text="Asset Name"/>
 
                 <TextView
-                    android:id="@+id/city"
+                    android:id="@+id/asset_serial_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-                    android:textColor="@color/city_txt"
+                    android:textColor="@color/name_txt"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nairobi"/>
+                <TextView
+                    android:id="@+id/asset_department"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/name_txt"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nairobi"/>
+
+                <TextView
+                    android:id="@+id/asset_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/name_txt"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nairobi"/>
+
+                <TextView
+                    android:id="@+id/asset_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/name_txt"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nairobi"/>
+
+                <TextView
+                    android:id="@+id/asset_other_attributes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/name_txt"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nairobi"/>
+
+                <TextView
+                    android:id="@+id/asset_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/name_txt"
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="10dp"
                     android:text="Nairobi"/>
 
             </LinearLayout>
+
         </LinearLayout>
 
 

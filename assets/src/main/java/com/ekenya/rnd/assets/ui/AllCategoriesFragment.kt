@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,7 +59,8 @@ class AllCategoriesFragment : BaseDaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observEAssets()
+        observeAssets()
+        setRecyclerView()
 
 
 
@@ -70,7 +72,13 @@ class AllCategoriesFragment : BaseDaggerFragment() {
 
     private fun onItemClick(){
         allAssetsAdapter?.onItemClick = { asset ->
-            findNavController().navigate(R.id.assestDetailsFragment)
+            val bundle = Bundle()
+            bundle.putParcelable("assetItem", asset)
+            requireView().findNavController().navigate(
+                R.id.assestDetailsFragment,
+                bundle
+            )
+            binding.recyclerview.adapter = allAssetsAdapter
 
         }
     }
@@ -137,7 +145,7 @@ class AllCategoriesFragment : BaseDaggerFragment() {
 
 
 
-    private fun observEAssets(){
+    private fun observeAssets(){
         lifecycleScope.launch{
             viewModel.allAssets.collect(){ result ->
                 when (result.status){
