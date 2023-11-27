@@ -10,6 +10,7 @@ import com.example.assets.databinding.ItemLayoutBinding
 
 class AllAssetsAdapter(var assets: List<Assets>):
     RecyclerView.Adapter<AllAssetsAdapter.AssetsViewHolder>() {
+    var onItemClick: ((Assets) -> Unit) = {}
         inner class AssetsViewHolder(val binding: ItemLayoutBinding,val context: Context) : RecyclerView.ViewHolder(binding.root){
             fun bind(assets: Assets){
                 binding.assetName.text = assets.name
@@ -34,7 +35,7 @@ class AllAssetsAdapter(var assets: List<Assets>):
         holder.bind(assets[position])
 
         holder.itemView.setOnClickListener {
-
+            onItemClick.invoke(assets[position])
         }
     }
 

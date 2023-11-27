@@ -134,6 +134,7 @@ class ProfileFragment : BaseDaggerFragment() {
                                 val city = binding.city.editText?.text.toString()
                                 val country = binding.country.editText?.text.toString()
                                 val email = binding.email.editText?.text.toString()
+                                val status = binding.status.editText?.text.toString()
 
                                 CoroutineScope(Dispatchers.Main).launch {
                                     selectedImageByteArray?.let { it1 -> viewModel.updateProfileDetails(name, country, city,image = it1, email) }
@@ -154,6 +155,7 @@ class ProfileFragment : BaseDaggerFragment() {
         val city = binding.city.editText?.text.toString()
         val country = binding.country.editText?.text.toString()
         val email = binding.email.editText?.text.toString()
+        val status = binding.status.editText?.text.toString()
 
 
         if (name.isEmpty()) {
@@ -173,7 +175,7 @@ class ProfileFragment : BaseDaggerFragment() {
             return ValidateResult(false, null)
         }
 
-        return ValidateResult(true, Profile(name = name, country = country, city = city, email = email,image = selectedImageByteArray))
+        return ValidateResult(true, Profile(name = name, country = country, city = city, email = email, status = status, image = selectedImageByteArray))
     }
 
     // Data class to hold validation result

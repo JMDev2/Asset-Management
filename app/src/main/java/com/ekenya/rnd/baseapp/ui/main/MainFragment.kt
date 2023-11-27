@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import com.ekenya.rnd.baseapp.AssetApp
 import com.ekenya.rnd.baseapp.databinding.FragmentMainBinding
 import com.ekenya.rnd.baseapp.di.helpers.activities.ActivityHelperKt
@@ -21,6 +22,8 @@ import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainFragment : BaseDaggerFragment() {
@@ -60,9 +63,9 @@ class MainFragment : BaseDaggerFragment() {
                 activity?.let { SplitCompat.install(it) }
 
                 setStatus("${module.name} already installed\nPress start to continue ..")
-                //
-                binding.startButton.visibility = View.VISIBLE
-                binding.startButton.setOnClickListener{
+                //splash screen
+                lifecycleScope.launch {
+                    delay(3000)
                     showFeatureModule(module)
                 }
             }

@@ -87,6 +87,7 @@ class HomeFragment : BaseDaggerFragment() {
                             binding.profileName.text = _profile.name
                             binding.city.text = _profile.city+", "
                             binding.country.text = _profile.country
+                            binding.status.text = _profile.status
                             if (_profile.image != null) {
                                 val bitmap = BitmapFactory.decodeByteArray(_profile.image, 0, _profile.image!!.size)
                                 binding.image.setImageBitmap(bitmap)

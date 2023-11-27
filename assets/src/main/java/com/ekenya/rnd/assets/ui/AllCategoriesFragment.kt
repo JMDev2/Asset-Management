@@ -62,9 +62,17 @@ class AllCategoriesFragment : BaseDaggerFragment() {
 
 
 
+
         //perfoming search
 
 
+    }
+
+    private fun onItemClick(){
+        allAssetsAdapter?.onItemClick = { asset ->
+            findNavController().navigate(R.id.assestDetailsFragment)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -141,6 +149,7 @@ class AllCategoriesFragment : BaseDaggerFragment() {
                                 filteredAssets = assets
                                 allAssetsAdapter = AllAssetsAdapter(it)
                                 setRecyclerView()
+                                onItemClick()
                             }
                         }
                     }

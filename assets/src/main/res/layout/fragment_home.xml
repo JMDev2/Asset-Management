@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginStart="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/card"
             app:layout_constraintStart_toEndOf="@id/card"
             app:layout_constraintTop_toTopOf="@+id/card">
 
@@ -88,8 +87,32 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Invest on yourself"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/city_txt"
+                android:textSize="12sp" />
+
 
         </LinearLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_layout" />
+
 
 
         <LinearLayout
@@ -206,18 +229,6 @@
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

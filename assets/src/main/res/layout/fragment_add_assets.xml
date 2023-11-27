@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/top_bg_img"
-    tools:context=".AddAssetsFragment">
+    tools:context=".ui.AddAssetsFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -35,11 +35,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Add Assets"
+        android:text="Fill the Asset Details Below."
         android:fontFamily="@font/poppins"
         android:textColor="@color/name_txt"
-        android:textSize="28sp"
-        android:layout_marginTop="5dp"
+        android:textSize="24sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
@@ -55,7 +55,7 @@
         android:textColorHint="@color/white"
         app:boxStrokeColor="@color/white"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/top_text">
 
@@ -76,7 +76,7 @@
         android:textColorHint="@color/white"
         app:boxStrokeColor="@color/white"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/asset_name">
 
@@ -98,7 +98,7 @@
         android:textColorHint="@color/white"
         app:boxStrokeColor="@color/white"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/asset_sn">
 
@@ -120,7 +120,7 @@
         android:textColorHint="@color/white"
         app:boxStrokeColor="@color/white"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/asset_dep">
 
@@ -142,7 +142,7 @@
         android:textColorHint="@color/white"
         app:boxStrokeColor="@color/white"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/asset_city">
 
@@ -163,7 +163,7 @@
         android:textColorHint="@color/white"
         app:boxStrokeColor="@color/white"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/asset_model">
 
@@ -195,7 +195,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description">
@@ -242,9 +242,9 @@
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Save"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins"

@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_allCategoriesFragment"
             app:destination="@id/allCategoriesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_assestDetailsFragment"
+            app:destination="@id/assestDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -63,6 +66,9 @@
         <action
             android:id="@+id/action_allAssetsFragment_to_allCategoriesFragment"
             app:destination="@id/allCategoriesFragment" />
+        <action
+            android:id="@+id/action_allAssetsFragment_to_assestDetailsFragment"
+            app:destination="@id/assestDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/ITAssetsFragment"
@@ -72,6 +78,9 @@
         <action
             android:id="@+id/action_ITAssetsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_ITAssetsFragment_to_assestDetailsFragment"
+            app:destination="@id/assestDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/marketingAssetsFragment"
@@ -81,6 +90,9 @@
         <action
             android:id="@+id/action_marketingAssetsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_marketingAssetsFragment_to_assestDetailsFragment"
+            app:destination="@id/assestDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/hrAssetsFragment"
@@ -90,6 +102,9 @@
         <action
             android:id="@+id/action_hrAssetsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_hrAssetsFragment_to_assestDetailsFragment"
+            app:destination="@id/assestDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/allCategoriesFragment"
@@ -102,5 +117,32 @@
         <action
             android:id="@+id/action_allCategoriesFragment_to_allAssetsFragment"
             app:destination="@id/allAssetsFragment" />
+        <action
+            android:id="@+id/action_allCategoriesFragment_to_assestDetailsFragment"
+            app:destination="@id/assestDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assestDetailsFragment"
+        android:name="com.ekenya.rnd.assets.ui.AssestDetailsFragment"
+        android:label="fragment_assest_details"
+        tools:layout="@layout/fragment_assest_details" >
+        <action
+            android:id="@+id/action_assestDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_assestDetailsFragment_to_allAssetsFragment"
+            app:destination="@id/allAssetsFragment" />
+        <action
+            android:id="@+id/action_assestDetailsFragment_to_hrAssetsFragment"
+            app:destination="@id/hrAssetsFragment" />
+        <action
+            android:id="@+id/action_assestDetailsFragment_to_marketingAssetsFragment"
+            app:destination="@id/marketingAssetsFragment" />
+        <action
+            android:id="@+id/action_assestDetailsFragment_to_ITAssetsFragment"
+            app:destination="@id/ITAssetsFragment" />
+        <action
+            android:id="@+id/action_assestDetailsFragment_to_allCategoriesFragment2"
+            app:destination="@id/allCategoriesFragment" />
     </fragment>
 </navigation>

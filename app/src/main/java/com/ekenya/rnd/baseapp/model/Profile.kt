@@ -15,5 +15,6 @@ data class Profile(
     val country: String,
     val city: String,
     val email: String,
+    val status: String,
     var image: ByteArray?
 ) : Parcelable
