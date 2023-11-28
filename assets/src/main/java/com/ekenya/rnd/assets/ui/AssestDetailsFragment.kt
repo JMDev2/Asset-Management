@@ -20,6 +20,7 @@ import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
 import com.ekenya.rnd.common.utils.Status
 import com.example.assets.R
 import com.example.assets.databinding.FragmentAssestDetailsBinding
+import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -56,10 +57,21 @@ class AssestDetailsFragment : BaseDaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Assuming you have a Toolbar in your layout with ID "toolbar"
-        binding.toolBar.title = "Your Title"
 
-        // If you want to enable the back arrow
+        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val maxScroll = appBarLayout.totalScrollRange
+            val percentage = Math.abs(verticalOffset).toFloat() / maxScroll.toFloat()
+
+            if (percentage == 1f) {
+                binding.toolBar.title = assets.name
+                binding.toolBar.visibility = View.VISIBLE
+            } else {
+                binding.toolBar.title = ""
+                binding.toolBar.visibility = View.GONE
+            }
+        })
+
+        // Enable the back arrow in the toolbar
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolBar)
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
