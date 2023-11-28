@@ -1,64 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/top_bg"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.ekenya.rnd.assets.ui.AssestDetailsFragment">
 
 
-        <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="280dp"
+            android:background="@color/top_bg_img"
+            app:contentScrim="@color/top_bg"
+            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:background="@color/top_bg_img"
-                app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap"
-                app:contentScrim="@color/top_bg">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    app:cardBackgroundColor="@color/top_bg"
-                    app:cardCornerRadius="100dp"
-                    android:layout_gravity="center"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center"
-                        app:cardCornerRadius="250dp">
-                        <ImageView
-                            android:id="@+id/image"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/joseph" />
-                    </androidx.cardview.widget.CardView>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"/>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/joseph" />
 
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -67,18 +50,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:background="@color/top_bg_img"
                 android:gravity="center"
-                android:background="@color/top_bg_img">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:textColor="@color/name_txt"
                     android:fontFamily="@font/poppins"
-                    android:text="Name"/>
+                    android:text="Name"
+                    android:textColor="@color/name_txt" />
 
                 <TextView
                     android:id="@+id/user_country"
@@ -86,18 +69,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins"
-                    android:textColor="@color/city_txt"
-                    android:text="Country"/>
+                    android:text="Country"
+                    android:textColor="@color/city_txt" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
-                    android:layout_marginEnd="80dp"
-                    android:orientation="horizontal"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="80dp"
                     android:layout_marginBottom="15dp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/view2">
@@ -131,8 +114,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Add"
                             android:fontFamily="@font/poppins"
+                            android:text="Add"
                             android:textColor="@color/city_txt"
                             app:layout_constraintEnd_toEndOf="@id/add_card"
                             app:layout_constraintStart_toStartOf="@id/add_card"
@@ -161,8 +144,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="All Assets"
                             android:fontFamily="@font/poppins"
+                            android:text="All Assets"
                             android:textColor="@color/city_txt"
                             app:layout_constraintEnd_toEndOf="@id/more_assets_card"
                             app:layout_constraintStart_toStartOf="@id/more_assets_card"
@@ -192,8 +175,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Profile"
                             android:fontFamily="@font/poppins"
+                            android:text="Profile"
                             android:textColor="@color/city_txt"
                             app:layout_constraintEnd_toEndOf="@id/profile_card"
                             app:layout_constraintStart_toStartOf="@id/profile_card"
@@ -209,113 +192,344 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="3dp"
-                android:background="@color/top_bg_img">
+                android:background="@color/top_bg_img"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/user_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/name_txt"
-                    android:fontFamily="@font/poppins"
                     android:layout_marginStart="24dp"
-                    android:text="Never Quit"/>
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Never Quit"
+                    android:textColor="@color/name_txt" />
 
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/city_txt"
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="10dp"
-                    android:text="27 Novermber 2023"/>
+                    android:fontFamily="@font/poppins"
+                    android:text="27 Novermber 2023"
+                    android:textColor="@color/city_txt" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="3dp"
-                android:background="@color/top_bg_img">
+                android:background="@color/top_bg_img"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/asset_name"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/name_txt"
-                    android:fontFamily="@font/poppins"
-                    android:layout_marginStart="24dp"
-                    android:text="Asset Name"/>
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/asset_serial_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/name_txt"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Nairobi"/>
-                <TextView
-                    android:id="@+id/asset_department"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/name_txt"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Nairobi"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/asset_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/name_txt"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Nairobi"/>
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/asset_name" />
 
-                <TextView
-                    android:id="@+id/asset_model"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/name_txt"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Nairobi"/>
+                        <TextView
+                            android:id="@+id/asset_namoe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Asset Name"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/asset_other_attributes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/name_txt"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Nairobi"/>
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/asset_description"
+                    <TextView
+                        android:id="@+id/asset_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Asset Name"
+                        android:textColor="@color/city_txt" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/name_txt"
                     android:layout_marginStart="24dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Nairobi"/>
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/serial" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Serial Number"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/asset_serial_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nairobi"
+                        android:textColor="@color/city_txt" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/department" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Department"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/asset_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nairobi"
+                        android:textColor="@color/city_txt" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/city" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="City"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/asset_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nairobi"
+                        android:textColor="@color/city_txt" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/model" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Model"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/asset_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nairobi"
+                        android:textColor="@color/city_txt" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/attribute" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Other Attributes"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/asset_other_attributes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nairobi"
+                        android:textColor="@color/city_txt" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/description" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Description"
+                            android:textColor="@color/name_txt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/asset_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nairobi"
+                        android:textColor="@color/city_txt" />
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
 
     </androidx.core.widget.NestedScrollView>
