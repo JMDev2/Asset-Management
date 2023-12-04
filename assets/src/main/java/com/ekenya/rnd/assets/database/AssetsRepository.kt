@@ -33,4 +33,14 @@ class AssetsRepository @Inject constructor(private val assetsDao: AssetsDao) {
     suspend fun getAssetsByDepartment(department: String): Flow<List<Assets>>{
         return assetsDao.getAssetsByDepartment(department)
     }
+
+    //get total assets saved
+    suspend fun getAssetsCount(): Int {
+        return assetsDao.getAssetsCount()
+    }
+
+    //get total assets by department
+    fun getAssetCountByDepartment(department: String): Flow<Int> {
+        return assetsDao.getAssetCountByDepartment(department)
+    }
 }

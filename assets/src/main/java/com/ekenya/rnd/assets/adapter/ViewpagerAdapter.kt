@@ -8,6 +8,7 @@ import com.ekenya.rnd.assets.ITAssetsFragment
 import com.ekenya.rnd.assets.ui.AllAssetsFragment
 import com.ekenya.rnd.assets.ui.HrAssetsFragment
 import com.ekenya.rnd.assets.ui.MarketingAssetsFragment
+import com.ekenya.rnd.assets.ui.TotalAssetsFragment
 
 class ViewpagerAdapter(fragmentManager : FragmentManager, lifecycle: Lifecycle)
     : FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -21,7 +22,7 @@ class ViewpagerAdapter(fragmentManager : FragmentManager, lifecycle: Lifecycle)
             1 -> return ITAssetsFragment()
             2 -> return MarketingAssetsFragment()
             3 -> return HrAssetsFragment()
-            4 -> return ITAssetsFragment()
+            4 -> return TotalAssetsFragment()
             else -> return AllAssetsFragment()
         }
     }

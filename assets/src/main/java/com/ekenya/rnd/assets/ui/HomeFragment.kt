@@ -34,7 +34,7 @@ class HomeFragment : BaseDaggerFragment() {
         ViewModelProvider(this, factory)[ProfileViewModel::class.java]
     }
 
-    var tabTitle = arrayOf("All", "IT", "Marketing", "HR", "Sales")
+    var tabTitle = arrayOf("All", "IT", "Marketing", "HR", "Total")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

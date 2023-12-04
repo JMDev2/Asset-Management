@@ -2,6 +2,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         jcenter()
+//        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Asset Management"

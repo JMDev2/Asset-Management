@@ -17,11 +17,15 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
     private val _filteredAssets = MutableLiveData<List<Assets>>()
     val filteredAssets: LiveData<List<Assets>> get() = _filteredAssets
 
+
+    private val _assetsCount = MutableLiveData<Int>()
+    val assetsCount: LiveData<Int>
+        get() = _assetsCount
+
+
+    //Display all assets
     val allAssets: Flow<Resource<List<Assets>>> = repository.allAssets.map {
         Resource.success(it)
-    }
-    fun refresh(){
-        allAssets
     }
 
 
@@ -31,6 +35,20 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
             repository.addAsset(assets)
         }
     }
+
+    //get assets count
+    fun retrieveAssetsCount() {
+        viewModelScope.launch {
+            val count = repository.getAssetsCount()
+            _assetsCount.value = count
+        }
+    }
+
+    //get total assets by department
+    fun getAssetCountByDepartment(department: String): Flow<Int> {
+        return repository.getAssetCountByDepartment(department)
+    }
+
 
     //checking if the serial number exists
     suspend fun isSerialNumberUnique(serialNumber: String): Boolean {

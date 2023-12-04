@@ -1,10 +1,12 @@
 package com.ekenya.rnd.assets.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +16,7 @@ import com.ekenya.rnd.assets.adapter.AllAssetsAdapter
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
 import com.ekenya.rnd.common.utils.Status
+import com.ekenya.rnd.common.utils.toast
 import com.example.assets.databinding.FragmentAllAssetsBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,7 +26,6 @@ import javax.inject.Inject
 class AllAssetsFragment : BaseDaggerFragment() {
     private lateinit var binding: FragmentAllAssetsBinding
     private var allAssetsAdapter: AllAssetsAdapter? = null
-
 
 
 
@@ -57,8 +59,6 @@ class AllAssetsFragment : BaseDaggerFragment() {
 
         observeAssets()
         setRecyclerView()
-
-
     }
 
 

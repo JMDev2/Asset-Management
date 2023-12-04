@@ -42,7 +42,8 @@ abstract class AssetsFragmentModule {
     abstract fun contributeAddAssetsFragment(): AddAssetsFragment
 
 
-
+    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
+    abstract fun contributeTotalAssetsFragment(): TotalAssetsFragment
 
 
     @Module

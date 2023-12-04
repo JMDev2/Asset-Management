@@ -23,4 +23,10 @@ interface AssetsDao {
     @Query("SELECT * FROM assets WHERE department = :department")
     fun getAssetsByDepartment(department: String): Flow<List<Assets>>
 
+    @Query("SELECT COUNT(*) FROM assets")
+    suspend fun getAssetsCount(): Int
+
+    @Query("SELECT COUNT(*) FROM assets WHERE department = :department")
+    fun getAssetCountByDepartment(department: String): Flow<Int>
+
 }
