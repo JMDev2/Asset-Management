@@ -1,8 +1,9 @@
 dependencyResolutionManagement {
     repositories {
+        maven { url 'https://jitpack.io' }
         google()
-        jcenter()
-//        maven { url 'https://jitpack.io' }
+        mavenCentral()
+
     }
 }
 rootProject.name = "Asset Management"

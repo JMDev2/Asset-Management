@@ -36,7 +36,7 @@ allprojects {
 //
 //            }
 //        }
-//        maven { url "https://jitpack.io" }
+        maven { url "https://jitpack.io" }
     }
     apply plugin: "com.jfrog.artifactory"
 }
