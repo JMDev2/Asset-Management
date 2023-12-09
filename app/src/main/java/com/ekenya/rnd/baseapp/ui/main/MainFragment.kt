@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
-import com.ekenya.rnd.baseapp.TourismApp
+import androidx.lifecycle.lifecycleScope
+import com.ekenya.rnd.baseapp.AssetApp
 import com.ekenya.rnd.baseapp.databinding.FragmentMainBinding
 import com.ekenya.rnd.baseapp.di.helpers.activities.ActivityHelperKt
 import com.ekenya.rnd.baseapp.di.helpers.activities.AddressableActivity
@@ -21,6 +22,8 @@ import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainFragment : BaseDaggerFragment() {
@@ -30,16 +33,16 @@ class MainFragment : BaseDaggerFragment() {
         fun newInstance() = MainFragment()
     }
 
-    private var mApp: TourismApp? = null
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val mViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-    }
+    private lateinit var mApp: AssetApp
+//    @Inject
+//    lateinit var viewModelFactory: ViewModelProvider.Factory
+//
+//    private val mViewModel by lazy {
+//        ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+//    }
 
     private val module by lazy {
-        Modules.FeatureTourism.INSTANCE
+        Modules.FeatureAssets.INSTANCE
     }
 
     private val splitInstallManager: SplitInstallManager by lazy {
@@ -60,14 +63,18 @@ class MainFragment : BaseDaggerFragment() {
                 activity?.let { SplitCompat.install(it) }
 
                 setStatus("${module.name} already installed\nPress start to continue ..")
-                //
-                binding.startButton.visibility = View.VISIBLE
-                binding.startButton.setOnClickListener{
+                //splash screen
+                lifecycleScope.launch {
+                    delay(3000)
                     showFeatureModule(module)
                 }
             }
             SplitInstallSessionStatus.FAILED -> {
                 setStatus("FAILED")
+            }
+            else -> {
+                setStatus("Something went wrong. Please try again.")
+
             }
         }
     }
@@ -75,32 +82,36 @@ class MainFragment : BaseDaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //
-        mApp = activity?.application as TourismApp
+        mApp = activity?.application as AssetApp
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return FragmentMainBinding.inflate(inflater, container, false).also {
+            binding = it
+            val request = SplitInstallRequest
+                .newBuilder()
+                .addModule(module.name)
+                .build()
 
-        //
-        return binding.root
+            splitInstallManager.startInstall(request)
+
+            setStatus("Start install for ${module.name}")
+
+        }.root
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val data = mViewModel.getData()
 
-        Log.i("MainFragment", "=> $data")
 
         if (splitInstallManager.installedModules.contains(module.toString())) {
             showFeatureModule(module)
-//            setStatus("${module.name} already installed\nPress start to continue ..")
-//            //
-//            binding.startButton.visibility = View.VISIBLE
-//            binding.startButton.setOnClickListener{
-//                showFeatureModule(module)
-//            }
+
             return
         }
 
@@ -133,7 +144,7 @@ class MainFragment : BaseDaggerFragment() {
     {
         try {
             //Inject
-            mApp!!.addModuleInjector(module)
+            mApp.addModuleInjector(module)
             //
 
             this.startActivity(ActivityHelperKt.intentTo(requireActivity(), module as AddressableActivity))

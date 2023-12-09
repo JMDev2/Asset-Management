@@ -1,12 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    compileSdk 33
     buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
@@ -35,7 +35,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-    dynamicFeatures = [':etourism']
+    dynamicFeatures = [':assets']
 }
 
 dependencies {

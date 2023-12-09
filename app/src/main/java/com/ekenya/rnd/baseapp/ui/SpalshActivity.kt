@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.ekenya.rnd.baseapp.R
-import com.ekenya.rnd.baseapp.TourismApp
+import com.ekenya.rnd.baseapp.AssetApp
 import com.ekenya.rnd.baseapp.databinding.ActivitySplashBinding
 import com.ekenya.rnd.baseapp.ui.main.MainFragment
 import com.ekenya.rnd.baseapp.ui.main.MainViewModel
@@ -19,7 +19,7 @@ class SplashActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySplashBinding
 
-    private var mApp: TourismApp? = null
+    private var mApp: AssetApp? = null
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -31,7 +31,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //
-        mApp = application as TourismApp
+        mApp = application as AssetApp
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -49,7 +49,7 @@ class SplashActivity : BaseActivity() {
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         // Fragment Injector should use the Application class
         // If necessary, I will use AndroidInjector as well as App class (I have not done this time)
-        return (application as TourismApp).supportFragmentInjector()
+        return (application as AssetApp).supportFragmentInjector()
     }
 
 

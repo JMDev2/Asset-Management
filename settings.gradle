@@ -1,10 +1,12 @@
 dependencyResolutionManagement {
     repositories {
+        maven { url 'https://jitpack.io' }
         google()
-        jcenter()
+        mavenCentral()
+
     }
 }
 rootProject.name = "Asset Management"
 include ':app'
 include ':common'
-include ':etourism'
+include ':assets'

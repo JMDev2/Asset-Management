@@ -13,7 +13,7 @@ import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class TourismApp: BaseApplication(), HasActivityInjector, HasSupportFragmentInjector {
+class AssetApp: BaseApplication(), HasActivityInjector, HasSupportFragmentInjector {
 
     // ActivityInjector / FragmentInjector used in the main module
     @Inject
