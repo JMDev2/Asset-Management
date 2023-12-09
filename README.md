@@ -1,12 +1,12 @@
 # Asset Management App
 
 <p align="horizontal">
-<img src="images/home.jpeg" width="100" >
-<img src="images/department.jpeg" width="100" >
-<img src="images/all.jpeg" width="100" >
-<img src="images/details.jpeg" width="100" >
-<img src="images/count.jpeg" width="100" >
-<img src="images/profile.jpeg" width="100" >
+<img src="images/home.jpeg" width="200" >
+<img src="images/depatment.jpeg" width="200" >
+<img src="images/all.jpeg" width="200" >
+<img src="images/details.jpeg" width="200" >
+<img src="images/count.jpeg" width="200" >
+<img src="images/profile.jpeg" width="200" >
 </p>
 
 ## Description
