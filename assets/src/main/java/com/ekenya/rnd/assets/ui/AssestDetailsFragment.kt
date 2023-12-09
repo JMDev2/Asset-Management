@@ -13,6 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.ekenya.rnd.common.utils.SharedPreferences.getSavedCountFromSharedPreferences
 import com.ekenya.rnd.common.utils.Status
 import com.example.assets.R
 import com.example.assets.databinding.FragmentAssestDetailsBinding
@@ -107,6 +108,8 @@ class AssestDetailsFragment : BaseDaggerFragment() {
             val bitmap = BitmapFactory.decodeByteArray(assets.image, 0, assets.image!!.size)
             binding.image.setImageBitmap(bitmap)
         }
+        val savedCount = getSavedCountFromSharedPreferences(requireContext())
+        binding.total.text = savedCount.toString()
     }
 
 

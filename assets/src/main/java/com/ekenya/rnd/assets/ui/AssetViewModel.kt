@@ -36,6 +36,7 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
         }
     }
 
+
     //get assets count
     fun retrieveAssetsCount() {
         viewModelScope.launch {

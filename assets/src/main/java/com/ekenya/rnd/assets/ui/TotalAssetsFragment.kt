@@ -13,7 +13,10 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.ekenya.rnd.assets.adapter.AllAssetsAdapter
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.ekenya.rnd.common.utils.SharedPreferences.saveCountToSharedPreferences
+import com.ekenya.rnd.common.utils.Status
 import com.ekenya.rnd.common.utils.toast
 import com.example.assets.databinding.FragmentTotalAssetsBinding
 import com.github.mikephil.charting.animation.Easing.EaseInOutCubic
@@ -22,6 +25,7 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -56,12 +60,9 @@ class TotalAssetsFragment : BaseDaggerFragment() {
 
     private fun setupPieChart() {
         binding.chart.apply {
-            // Set up general properties
             setUsePercentValues(true)
             description.isEnabled = false
             setExtraOffsets(5f, 10f, 5f, 5f)
-
-            // Enable and configure the hole
             isDrawHoleEnabled = true
             setHoleColor(Color.WHITE)
             setTransparentCircleColor(Color.WHITE)
@@ -70,15 +71,10 @@ class TotalAssetsFragment : BaseDaggerFragment() {
             transparentCircleRadius = 61f
             setDrawCenterText(true)
             centerText = "Departments"
-
-            // Enable rotation of the chart by touch
             isRotationEnabled = true
             rotationAngle = 0f
-
-            // Highlight the values when tapped
             isHighlightPerTapEnabled = true
 
-            // Set up legend
             val legend = legend
             legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
             legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
@@ -94,6 +90,8 @@ class TotalAssetsFragment : BaseDaggerFragment() {
         viewModel.assetsCount.observe(viewLifecycleOwner, Observer { count ->
             if (count > 0) {
                 binding.totalAssets.text = "$count"
+                saveCountToSharedPreferences(requireContext(), count)
+                Log.d("kim","$count")
             } else {
                 binding.totalAssets.text = "No Asset Saved"
             }
@@ -103,37 +101,37 @@ class TotalAssetsFragment : BaseDaggerFragment() {
 
     private fun observeAssetCountByDepartment(department: String, textView: TextView, color: Int) {
         lifecycleScope.launch {
-            viewModel.getAssetCountByDepartment(department).collect { count ->
-                textView.text = "$count"
+            val count = viewModel.getAssetCountByDepartment(department).first()
+            textView.text = "$count"
 
-                // Update the data for the specific department
-                val updatedEntries = ArrayList<PieEntry>(pieEntries)
-                val index = updatedEntries.indexOfFirst { it.label == department }
-                if (index != -1) {
-                    updatedEntries[index] = PieEntry(count.toFloat(), department)
-                } else {
-                    updatedEntries.add(PieEntry(count.toFloat(), department))
-                }
-
-                // Set up dataset
-                val dataSet = PieDataSet(updatedEntries, "Departments")
-                dataSet.sliceSpace = 3f
-                dataSet.selectionShift = 5f
-                dataSet.colors = arrayListOf(Color.BLUE, Color.GREEN, Color.RED)
-
-                // Set up data
-                val data = PieData(dataSet)
-                data.setValueTextSize(10f)
-                data.setValueTextColor(Color.WHITE)
-
-                // Apply data to the chart
-                binding.chart.data = data
-                binding.chart.invalidate()
-
-                // Update the pieEntries list for future modifications
-                pieEntries.clear()
-                pieEntries.addAll(updatedEntries)
+            // Update the data for the specific department
+            val updatedEntries = ArrayList<PieEntry>(pieEntries)
+            val index = updatedEntries.indexOfFirst { it.label == department }
+            if (index != -1) {
+                updatedEntries[index] = PieEntry(count.toFloat(), department)
+            } else {
+                updatedEntries.add(PieEntry(count.toFloat(), department))
             }
+
+            // Set up dataset
+            val dataSet = PieDataSet(updatedEntries, "Departments")
+            dataSet.sliceSpace = 3f
+            dataSet.selectionShift = 5f
+            dataSet.colors = arrayListOf(Color.BLUE, Color.GREEN, Color.RED)
+
+            // Set up data
+            val data = PieData(dataSet)
+            data.setValueTextSize(10f)
+            data.setValueTextColor(Color.WHITE)
+
+            // Apply data to the chart
+            binding.chart.data = data
+            binding.chart.invalidate()
+
+            // Update the pieEntries list for future modifications
+            pieEntries.clear()
+            pieEntries.addAll(updatedEntries)
         }
     }
 }
+

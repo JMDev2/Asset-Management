@@ -8,52 +8,22 @@ import javax.inject.Inject
 object SharedPreferences {
 
 
-    // Function to set the phone number in SharedPreferences
-    fun setRingTone(context: Context, phoneNumber: String) {
+    fun saveCountToSharedPreferences(context: Context, count: Int) {
+        // You can modify the key or preferences name as needed
+        val key = "totalAssetsCount"
         val sharedPreferences: SharedPreferences =
             context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString("phoneNumber", phoneNumber)
+        editor.putInt(key, count)
         editor.apply()
     }
 
-    // Function to get the phone number from SharedPreferences
-    fun getRingTone(context: Context): String? {
+    fun getSavedCountFromSharedPreferences(context: Context): Int {
+        // You can modify the key or preferences name as needed
+        val key = "totalAssetsCount"
         val sharedPreferences: SharedPreferences =
             context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("phoneNumber", "")
+        return sharedPreferences.getInt(key, 0) // 0 is the default value if the key is not found
     }
 
-
-    // Function to set the date and time "from" in SharedPreferences
-    fun setDateTimeFrom(context: Context, dateTimeFrom: String) {
-        val sharedPreferences: SharedPreferences =
-            context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString("dateTimeFrom", dateTimeFrom)
-        editor.apply()
-    }
-
-    // Function to get the date and time "from" from SharedPreferences
-    fun getDateTimeFrom(context: Context): String? {
-        val sharedPreferences: SharedPreferences =
-            context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("dateTimeFrom", null)
-    }
-
-    // Function to set the date and time "to" in SharedPreferences
-    fun setDateTimeTo(context: Context, dateTimeTo: String) {
-        val sharedPreferences: SharedPreferences =
-            context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString("dateTimeTo", dateTimeTo)
-        editor.apply()
-    }
-
-    // Function to get the date and time "to" from SharedPreferences
-    fun getDateTimeTo(context: Context): String? {
-        val sharedPreferences: SharedPreferences =
-            context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("dateTimeTo", null)
-    }
 }
