@@ -63,11 +63,6 @@ class AllCategoriesFragment : BaseDaggerFragment() {
         setRecyclerView()
 
 
-
-
-        //perfoming search
-
-
     }
 
     private fun onItemClick(){
@@ -88,6 +83,7 @@ class AllCategoriesFragment : BaseDaggerFragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    //tool bar menu item
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.search -> {
@@ -105,6 +101,7 @@ class AllCategoriesFragment : BaseDaggerFragment() {
                     override fun onQueryTextChange(newText: String?): Boolean {
                         // Perform filtering or live search as the user types
                         filterShip(newText.orEmpty())
+                        onItemClick()
                         return true
                     }
                 })
