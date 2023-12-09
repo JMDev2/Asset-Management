@@ -35,8 +35,8 @@ class ProfileViewModel @Inject constructor(private val repository: ProfileReposi
     }
 
     //update
-    suspend fun updateProfileDetails(name: String, country: String, city: String,image: ByteArray, email: String) {
-        repository.updateProfileDetails(name, country, city,image, email)
+    suspend fun updateProfileDetails(name: String, country: String, city: String,image: ByteArray, email: String, status: String) {
+        repository.updateProfileDetails(name, country, city,image, email, status)
     }
 
 }

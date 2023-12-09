@@ -22,7 +22,7 @@ interface ProfileDao {
             Flow<Profile>
 
     //updtae details
-    @Query("UPDATE profile SET name = :name, country = :country, city= :city, image=:image  WHERE email LIKE :email")
-    suspend fun updateProfile(name: String, country: String, city: String, image: ByteArray, email: String)
+    @Query("UPDATE profile SET name = :name, country = :country, city= :city, image=:image, status=:status  WHERE email LIKE :email")
+    suspend fun updateProfile(name: String, country: String, city: String, image: ByteArray, email: String, status: String)
 
 }

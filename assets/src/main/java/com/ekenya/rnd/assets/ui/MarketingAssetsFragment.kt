@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ekenya.rnd.assets.adapter.AllAssetsAdapter
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
 import com.ekenya.rnd.common.utils.Status
+import com.example.assets.R
 import com.example.assets.databinding.FragmentMarketingAssetsBinding
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -48,6 +50,19 @@ class MarketingAssetsFragment : BaseDaggerFragment() {
 
         }
 
+    private fun onItemClick(){
+        allAssetsAdapter?.onItemClick = { asset ->
+            val bundle = Bundle()
+            bundle.putParcelable("assetItem", asset)
+            requireView().findNavController().navigate(
+                R.id.assestDetailsFragment,
+                bundle
+            )
+            binding.marketingRecyclerview.adapter = allAssetsAdapter
+
+        }
+    }
+
         private fun setRecyclerView(){
             binding.marketingRecyclerview.apply{
                 layoutManager = LinearLayoutManager(requireContext())
@@ -67,6 +82,7 @@ class MarketingAssetsFragment : BaseDaggerFragment() {
                                 if (allAssetsAdapter == null){
                                     allAssetsAdapter = AllAssetsAdapter(it)
                                     setRecyclerView()
+                                    onItemClick()
                                 }
                             }
                         }

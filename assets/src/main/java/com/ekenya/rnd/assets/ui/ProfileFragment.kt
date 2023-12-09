@@ -3,6 +3,7 @@ package com.ekenya.rnd.assets.ui
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.ekenya.rnd.baseapp.model.Profile
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
+import com.ekenya.rnd.common.utils.Status
 import com.ekenya.rnd.common.utils.toast
 import com.example.assets.R
 import com.example.assets.databinding.FragmentProfileBinding
@@ -58,8 +61,11 @@ class ProfileFragment : BaseDaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         saveUser()
         pickImage(view)
+        observeProfile()
 
 
 
@@ -137,7 +143,7 @@ class ProfileFragment : BaseDaggerFragment() {
                                 val status = binding.status.editText?.text.toString()
 
                                 CoroutineScope(Dispatchers.Main).launch {
-                                    selectedImageByteArray?.let { it1 -> viewModel.updateProfileDetails(name, country, city,image = it1, email) }
+                                    selectedImageByteArray?.let { it1 -> viewModel.updateProfileDetails(name, country, city,image = it1, email, status) }
                                     toast("Profile updated")
                                 }
                             }
@@ -182,4 +188,29 @@ class ProfileFragment : BaseDaggerFragment() {
     private data class ValidateResult(val isValid: Boolean, val profile: Profile? = null)
 
 
+
+    private fun observeProfile(){
+        lifecycleScope.launch {
+            viewModel._user.collect(){ profile ->
+                when(profile.status){
+                    Status.SUCCESS -> {
+                        val _profile = profile.data
+                        _profile?.let{
+                            if (_profile.image != null) {
+                                val bitmap = BitmapFactory.decodeByteArray(_profile.image, 0, _profile.image!!.size)
+                                binding.imageView.setImageBitmap(bitmap)
+                            }
+
+                        }
+                    }
+                    Status.LOADING ->{
+
+                    }
+                    Status.ERROR ->{
+
+                    }
+                }
+            }
+        }
+    }
 }

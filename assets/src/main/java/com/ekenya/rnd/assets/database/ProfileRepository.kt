@@ -30,8 +30,8 @@ class ProfileRepository @Inject constructor(private val profileDao: ProfileDao) 
     }
 
     //update
-    suspend fun updateProfileDetails(name: String, country: String, city: String,image: ByteArray, email: String) {
-        profileDao.updateProfile(name, country, city,image, email)
+    suspend fun updateProfileDetails(name: String, country: String, city: String,image: ByteArray, email: String, status: String) {
+        profileDao.updateProfile(name, country, city,image, email, status)
     }
 
 

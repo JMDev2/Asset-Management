@@ -71,7 +71,7 @@
                     android:id="@+id/city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nairobi, "
+                    android:text=", "
                     android:fontFamily="@font/poppins"
                     android:textAlignment="textStart"
                     android:textColor="@color/city_txt"
@@ -81,7 +81,7 @@
                     android:id="@+id/country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" kenya"
+                    android:text=" "
                     android:fontFamily="@font/poppins"
                     android:textColor="@color/city_txt"
                     android:textSize="12sp" />

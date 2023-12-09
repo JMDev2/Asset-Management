@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ekenya.rnd.assets.adapter.AllAssetsAdapter
@@ -17,6 +18,7 @@ import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
 import com.ekenya.rnd.common.utils.Status
 import com.ekenya.rnd.common.utils.toast
+import com.example.assets.R
 import com.example.assets.databinding.FragmentAllAssetsBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -59,6 +61,20 @@ class AllAssetsFragment : BaseDaggerFragment() {
 
         observeAssets()
         setRecyclerView()
+
+    }
+
+    private fun onItemClick(){
+        allAssetsAdapter?.onItemClick = { asset ->
+            val bundle = Bundle()
+            bundle.putParcelable("assetItem", asset)
+            requireView().findNavController().navigate(
+                R.id.assestDetailsFragment,
+                bundle
+            )
+            binding.recyclerview.adapter = allAssetsAdapter
+
+        }
     }
 
 
@@ -83,9 +99,11 @@ class AllAssetsFragment : BaseDaggerFragment() {
                            if (allAssetsAdapter == null){
                                allAssetsAdapter = AllAssetsAdapter(it)
                                setRecyclerView()
+                               onItemClick()
                            }else{
                                allAssetsAdapter?.updateData(it)
                            }
+
                        }
                    }
                    Status.LOADING -> {
