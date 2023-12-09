@@ -2,7 +2,7 @@
 
 <p align="horizontal">
 <img src="images/home.jpeg" width="200" >
-<img src="images/department.jpeg" width="200" >
+<img src="images/depatment.jpeg" width="200" >
 <img src="images/all.jpeg" width="200" >
 <img src="images/details.jpeg" width="200" >
 <img src="images/count.jpeg" width="200" >
@@ -12,7 +12,7 @@
 ## Description
 Welcome to the Asset Management Android App! This application is designed to streamline the management of assets, providing a user-friendly interface to perform various operations. Whether you need to add new assets, categorize them by department, search for specific assets, view detailed information, or track the total count of assets, this app has you covered.
 
-#Features
+# Features
 * Add New Assets
 Easily add new assets to the system with a few simple steps. Specify crucial details and categorize assets by department for efficient management.
 
@@ -31,7 +31,7 @@ Get an overview of the total count of assets, providing valuable insights into t
 * User Profile
 Tailor your experience by managing your user profile. Keep your information up-to-date and personalized.
 
-##How to Use
+## How to Use
 * Add New Assets:
 
 Navigate to the "Add New Assets" section.
@@ -59,7 +59,7 @@ Update information and settings as needed.
 Installation
 Clone the repository to your local machine.
 
-bash
+
 Copy code
 git clone https://github.com/your-username/asset-management-app.git
 Open the project in Android Studio.
