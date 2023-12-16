@@ -60,7 +60,11 @@ class AllAssetsFragment : BaseDaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeAssets()
-        setRecyclerView()
+        if (binding.recyclerview == null){
+            binding.textView.visibility = View.VISIBLE
+        }else{
+            setRecyclerView()
+        }
 
     }
 
@@ -86,8 +90,6 @@ class AllAssetsFragment : BaseDaggerFragment() {
         }
     }
 
-
-
     private fun observeAssets(){
         lifecycleScope.launch{
             viewModel.allAssets.collect(){ result ->
@@ -96,29 +98,24 @@ class AllAssetsFragment : BaseDaggerFragment() {
                        binding.progressBar.visibility = View.GONE
                        val assets = result.data
                        assets?.let {
-                           if (allAssetsAdapter == null){
-                               allAssetsAdapter = AllAssetsAdapter(it)
+                           if (allAssetsAdapter == null) {
+                               allAssetsAdapter = AllAssetsAdapter(viewModel, it)
                                setRecyclerView()
                                onItemClick()
-                           }else{
-                               allAssetsAdapter?.updateData(it)
                            }
 
                        }
                    }
                    Status.LOADING -> {
                        binding.progressBar.visibility = View.VISIBLE
+                       binding.textView.visibility = View.GONE
                    }
                    Status.ERROR -> {
                        binding.progressBar.visibility = View.VISIBLE
-                       binding.errorText.visibility = View.VISIBLE
+                       binding.textView.visibility = View.VISIBLE
                    }
                }
             }
         }
     }
-
-
-
-
 }

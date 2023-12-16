@@ -10,14 +10,14 @@ import androidx.room.PrimaryKey
 data class Assets(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    val name: String?,
-    val serial_number: String?,
-    val department: String?,
-    val city: String?,
-    val model: String?,
-    val other_attributes: String?,
-    val description: String?,
-    var image: ByteArray?
+    val name: String?= null,
+    val serial_number: String?= null,
+    val department: String?= null,
+    val city: String?= null,
+    val model: String?= null,
+    val other_attributes: String?= null,
+    val description: String?= null,
+    var image: ByteArray?= null
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

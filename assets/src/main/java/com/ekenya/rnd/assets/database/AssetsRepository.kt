@@ -43,4 +43,11 @@ class AssetsRepository @Inject constructor(private val assetsDao: AssetsDao) {
     fun getAssetCountByDepartment(department: String): Flow<Int> {
         return assetsDao.getAssetCountByDepartment(department)
     }
+
+    //delete assets
+    suspend fun delete(assets: Assets){
+        withContext(Dispatchers.IO){
+            assetsDao.delete(assets)
+        }
+    }
 }

@@ -50,6 +50,13 @@ class AssetViewModel @Inject constructor(private val repository: AssetsRepositor
         return repository.getAssetCountByDepartment(department)
     }
 
+    //delete assets
+    fun delete(assets: Assets){
+        viewModelScope.launch {
+            repository.delete(assets)
+        }
+    }
+
 
     //checking if the serial number exists
     suspend fun isSerialNumberUnique(serialNumber: String): Boolean {

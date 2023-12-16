@@ -1,6 +1,7 @@
 package com.ekenya.rnd.assets.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ekenya.rnd.assets.adapter.AllAssetsAdapter
 import com.ekenya.rnd.baseapp.model.Assets
 import com.ekenya.rnd.common.abstractions.BaseDaggerFragment
@@ -18,6 +21,8 @@ import com.ekenya.rnd.common.utils.Status
 import com.ekenya.rnd.common.utils.toast
 import com.example.assets.R
 import com.example.assets.databinding.FragmentAllCategoriesBinding
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -62,6 +67,11 @@ class AllCategoriesFragment : BaseDaggerFragment() {
         observeAssets()
         setRecyclerView()
 
+        if (binding.recyclerview == null){
+            binding.errorText.visibility = View.VISIBLE
+        }else{
+            setRecyclerView()
+        }
 
     }
 
@@ -126,7 +136,7 @@ class AllCategoriesFragment : BaseDaggerFragment() {
         }else{
             binding.errorText.visibility = View.GONE
         }
-        allAssetsAdapter = AllAssetsAdapter(theFilteredAssests)
+        allAssetsAdapter = AllAssetsAdapter(viewModel,theFilteredAssests)
         binding.recyclerview.adapter = allAssetsAdapter
         allAssetsAdapter!!.notifyDataSetChanged()
     }
@@ -141,6 +151,56 @@ class AllCategoriesFragment : BaseDaggerFragment() {
     }
 
 
+    //Delete assets
+    private fun swipeToDelete(){
+        val assets = Assets()
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                allAssetsAdapter?.removeItem(position)
+                binding.root.let {
+                    showSnackBar(it, assets)
+                }
+            }
+
+        }).attachToRecyclerView(binding.recyclerview)
+    }
+
+
+    private fun showSnackBar(view: View, deletedShip: Assets) {
+        val snackbar = Snackbar.make(
+            view,
+            "Deleted",
+            Snackbar.LENGTH_LONG
+        )
+
+        snackbar.setAction("Undo") {
+            viewModel.saveAsset(deletedShip)
+        }
+
+        // Set a callback to perform an action after the Snackbar is dismissed
+        snackbar.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
+            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                if (event == DISMISS_EVENT_TIMEOUT) {
+                    toast("Ship Deleted")
+                }
+            }
+        })
+
+        snackbar.show()
+    }
+
 
     private fun observeAssets(){
         lifecycleScope.launch{
@@ -152,18 +212,23 @@ class AllCategoriesFragment : BaseDaggerFragment() {
                         assets?.let {
                             if (allAssetsAdapter == null){
                                 filteredAssets = assets
-                                allAssetsAdapter = AllAssetsAdapter(it)
+                                allAssetsAdapter = AllAssetsAdapter(viewModel,it)
                                 setRecyclerView()
                                 onItemClick()
+                                swipeToDelete()
                             }
                         }
                     }
                     Status.LOADING -> {
                         binding.progressBar.visibility = View.VISIBLE
+                        toast("Loading")
+                        Log.e("Loading","Loading")
                     }
                     Status.ERROR -> {
                         binding.progressBar.visibility = View.GONE
                         binding.errorText.visibility = View.VISIBLE
+                        toast("Error")
+                        Log.e("Loading", "Error")
                     }
                 }
             }

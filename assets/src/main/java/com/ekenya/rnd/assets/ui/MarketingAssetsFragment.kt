@@ -80,7 +80,7 @@ class MarketingAssetsFragment : BaseDaggerFragment() {
                             val assets = result.data
                             assets?.let {
                                 if (allAssetsAdapter == null){
-                                    allAssetsAdapter = AllAssetsAdapter(it)
+                                    allAssetsAdapter = AllAssetsAdapter(viewModel,it)
                                     setRecyclerView()
                                     onItemClick()
                                 }
@@ -88,10 +88,12 @@ class MarketingAssetsFragment : BaseDaggerFragment() {
                         }
                         Status.LOADING -> {
                             binding.marketingProgressBar.visibility = View.VISIBLE
+                            binding.textView.visibility = View.GONE
 
                         }
                         Status.ERROR -> {
                             binding.marketingProgressBar.visibility = View.GONE
+                            binding.textView.visibility = View.VISIBLE
 
                         }
                     }

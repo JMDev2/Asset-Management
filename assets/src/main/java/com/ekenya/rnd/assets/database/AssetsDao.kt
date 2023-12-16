@@ -1,6 +1,7 @@
 package com.ekenya.rnd.assets.database
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.ekenya.rnd.baseapp.model.Assets
@@ -29,4 +30,8 @@ interface AssetsDao {
     @Query("SELECT COUNT(*) FROM assets WHERE department = :department")
     fun getAssetCountByDepartment(department: String): Flow<Int>
 
+
+    //delete assets
+    @Delete
+    fun delete(assets: Assets)
 }
