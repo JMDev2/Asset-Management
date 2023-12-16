@@ -50,6 +50,7 @@ class HrAssetsFragment : BaseDaggerFragment() {
         setRecyclerView()
 
 
+
     }
 
     private fun onItemClick(){
@@ -82,7 +83,7 @@ class HrAssetsFragment : BaseDaggerFragment() {
                         val assets = result.data
                         assets?.let {
                             if (allAssetsAdapter == null){
-                                allAssetsAdapter = AllAssetsAdapter(it)
+                                allAssetsAdapter = AllAssetsAdapter(viewModel,it)
                                 setRecyclerView()
                                 onItemClick()
                             }
@@ -90,10 +91,12 @@ class HrAssetsFragment : BaseDaggerFragment() {
                     }
                     Status.LOADING -> {
                         binding.hrProgressBar.visibility = View.VISIBLE
+                        binding.textView.visibility = View.GONE
 
                     }
                     Status.ERROR -> {
                         binding.hrProgressBar.visibility = View.GONE
+                        binding.textView.visibility = View.VISIBLE
 
                     }
                 }

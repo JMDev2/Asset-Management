@@ -33,7 +33,6 @@ Tailor your experience by managing your user profile. Keep your information up-t
 
 ## How to Use
 * Add New Assets:
-
 Navigate to the "Add New Assets" section.
 Fill in the required details for each asset.
 Specify the department to which the asset belongs.
@@ -77,7 +76,6 @@ We welcome contributions! If you find issues or have suggestions for improvement
 * Kotlin
 * Room Database
 * Coroutines
-* TDD
 * Dagger2
 * Search functionality
 
