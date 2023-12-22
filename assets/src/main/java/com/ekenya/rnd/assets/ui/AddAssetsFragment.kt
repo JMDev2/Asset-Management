@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -62,6 +64,17 @@ class AddAssetsFragment : BaseDaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //drop down
+        val autoCompleteTextView = binding.autoCompleteTextView
+        val languages = resources.getStringArray(com.ekenya.rnd.common.R.array.priority_items)
+        val adapter = ArrayAdapter(requireContext(),
+            android.R.layout.simple_dropdown_item_1line, languages)
+
+
+        binding.autoCompleteTextView.setTextColor(resources.getColor(R.color.white))
+
+        autoCompleteTextView.setAdapter(adapter)
         saveAssets()
         pickImage(view)
     }
@@ -155,18 +168,20 @@ class AddAssetsFragment : BaseDaggerFragment() {
     private fun validateInput(): ValidateResult {
         val name = binding.assetName.editText?.text.toString()
         val serialNumber = binding.assetSn.editText?.text.toString()
-        val department = binding.assetDep.editText?.text.toString()
+        val department = binding.autoCompleteTextView
         val city = binding.assetCity.editText?.text.toString()
         val model = binding.assetModel.editText?.text.toString()
         val otherAttributes = binding.assetOtherAttr.editText?.text.toString()
         val description = binding.description.text.toString()
+
+        val dpt = department.text.toString().trim()
 
         if (name.isEmpty()) {
             binding.assetName.error = "Field must not be empty"
             return ValidateResult(false, null)
         }
 
-        return ValidateResult(true, Assets(name = name, serial_number = serialNumber, department = department, city = city, model = model, other_attributes = otherAttributes, description = description, image = selectedImageByteArray))
+        return ValidateResult(true, Assets(name = name, serial_number = serialNumber, department = dpt, city = city, model = model, other_attributes = otherAttributes, description = description, image = selectedImageByteArray))
     }
 
     // Data class to hold validation result

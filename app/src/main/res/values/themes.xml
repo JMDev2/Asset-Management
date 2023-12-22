@@ -39,5 +39,10 @@
 
     </style>
 
+    <style name="CustomWhiteOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 
 </resources>

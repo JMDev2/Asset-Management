@@ -89,26 +89,50 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/asset_dep"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="department"-->
+<!--        android:textColorHint="@color/white"-->
+<!--        app:boxStrokeColor="@color/white"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/asset_sn">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins"-->
+<!--            android:textColor="@color/white" />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/asset_dep"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="department"
-        android:textColorHint="@color/white"
-        app:boxStrokeColor="@color/white"
-        android:layout_marginStart="24dp"
+        style="@style/CustomWhiteOutlinedBox"
+        android:layout_height="60dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/asset_sn">
+       app:layout_constraintTop_toBottomOf="@+id/asset_sn">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/white" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:hint="Department"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <com.google.android.material.textfield.TextInputLayout
