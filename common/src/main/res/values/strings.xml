@@ -1,7 +1,16 @@
 <resources>
-    <string name="app_name">E Tourism</string>
-    <string name="title_etourism">E Tourism</string>
-    <string name="title_support">Support Chat</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_assets">assets</string>
+<!--    <string name="app_name">E Tourism</string>-->
+<!--    <string name="title_etourism">E Tourism</string>-->
+<!--    <string name="title_support">Support Chat</string>-->
+<!--    <string name="title_activity_main">MainActivity</string>-->
+<!--    <string name="title_assets">assets</string>-->
+
+
+        <string-array name="priority_items">
+            <item>IT</item>
+            <item>Marketing</item>
+            <item>Hr</item>
+            <!-- Add more items as needed -->
+        </string-array>
+
 </resources>
